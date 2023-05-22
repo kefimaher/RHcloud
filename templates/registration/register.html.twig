@@ -9,6 +9,10 @@
         {{ form_row(registrationForm.email) }}
         {{ form_row(registrationForm.plainPassword, {label: 'Password'}) }}
     {{ form_row(registrationForm.employernumber) }}
+    {{ form_row(registrationForm.firstname) }}
+
+    {{ form_row(registrationForm.lastname) }}
+    {{ form_row(registrationForm.fonction) }}
         {{ form_row(registrationForm.agreeTerms) }}
         <button type="submit" class="btn">Register</button>
     {{ form_end(registrationForm) }}

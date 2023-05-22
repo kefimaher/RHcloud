@@ -24,6 +24,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $employernumber = null;
 
     #[ORM\Column]
+    private ?string $firstname = null;
+    #[ORM\Column]
+    private ?string $lastname = null;
+
+    #[ORM\Column]
+    private ?string $fonction = null;
+
+    #[ORM\Column]
     private ?string $realpassword = null;
 
     #[ORM\Column]
@@ -135,6 +143,54 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setRealpassword(?string $realpassword): void
     {
         $this->realpassword = $realpassword;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFirstname(): ?string
+    {
+        return $this->firstname;
+    }
+
+    /**
+     * @param string|null $firstname
+     */
+    public function setFirstname(?string $firstname): void
+    {
+        $this->firstname = $firstname;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getLastname(): ?string
+    {
+        return $this->lastname;
+    }
+
+    /**
+     * @param string|null $lastname
+     */
+    public function setLastname(?string $lastname): void
+    {
+        $this->lastname = $lastname;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFonction(): ?string
+    {
+        return $this->fonction;
+    }
+
+    /**
+     * @param string|null $fonction
+     */
+    public function setFonction(?string $fonction): void
+    {
+        $this->fonction = $fonction;
     }
 
 }
