@@ -15,10 +15,10 @@ class UserProfile
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="UserProfile")
-     * @ORM\JoinColumn(name="employer_number", referencedColumnName="employer_number", onDelete="CASCADE")
-     *
+     * @ORM\OneToOne(targetEntity="User", inversedBy="employer_number")
+     * @ORM\JoinColumn(name="employer_number", referencedColumnName="employer_number")
      */
+    #[ORM\Column]
     private ?int $employer_number = null;
     #[ORM\Column()]
     private ?int $id_conge = null;

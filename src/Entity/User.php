@@ -20,8 +20,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 
-    #[ORM\Column(unique: true)]
-    private ?int $employernumber = null;
+    /**
+     * @ORM\OneToOne(targetEntity="UserProfile")
+     */
+    #[ORM\Column()]
+    private ?int $employer_number = null;
 
     #[ORM\Column]
     private ?string $firstname = null;
@@ -116,22 +119,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @return string|null
      */
-    public function getEmployernumber(): ?string
-    {
-        return $this->employernumber;
-    }
-
-    /**
-     * @param string|null $employernumber
-     */
-    public function setEmployernumber(?string $employernumber): void
-    {
-        $this->employernumber = $employernumber;
-    }
-
-    /**
-     * @return string|null
-     */
     public function getRealpassword(): ?string
     {
         return $this->realpassword;
@@ -191,6 +178,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setFonction(?string $fonction): void
     {
         $this->fonction = $fonction;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getEmployerNumber(): ?int
+    {
+        return $this->employer_number;
+    }
+
+    /**
+     * @param int|null $employer_number
+     */
+    public function setEmployerNumber(?int $employer_number): void
+    {
+        $this->employer_number = $employer_number;
     }
 
 }
