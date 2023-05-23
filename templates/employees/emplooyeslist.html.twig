@@ -46,19 +46,19 @@
 
                     <tbody>
                     {% for user in users %}
-
+                    {% for profile in profiles %}
                     <tr class="even pointer">
                         <td class="">{{ user.employernumber  }}</td>
                         <td class="">{{ user.firstname }}</td>
                         <td class="">{{ user.email  }}</td>
                         <td class="">{{ user.fonction }}</td>
-                        <td class=""></td>
-                        <td class=""></td>
-                        <td class=""></td>
+                        <td class="">{{ profile.status }}</td>
+                        <td class="">{{ profile.join_date }}</td>
+                        <td class="">{{ profile.contract_type }}</td>
                         <td class="last"><a href="#">link</a>
                         </td>
                     </tr>
-
+                    {% endfor %}
                     {% endfor %}
                     </tbody>
                 </table>

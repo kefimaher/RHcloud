@@ -13,7 +13,12 @@ class UserProfile
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column()]
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="UserProfile")
+     * @ORM\JoinColumn(name="employer_number", referencedColumnName="employer_number", onDelete="CASCADE")
+     *
+     */
     private ?int $employer_number = null;
     #[ORM\Column()]
     private ?int $id_conge = null;
