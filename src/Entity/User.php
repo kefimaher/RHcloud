@@ -20,12 +20,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 
-    /**
-     * @ORM\OneToOne(targetEntity="UserProfile")
-     */
-    #[ORM\Column()]
-    private ?int $employer_number = null;
-
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?User $user_profile = null;
     #[ORM\Column]
     private ?string $firstname = null;
     #[ORM\Column]
@@ -181,19 +177,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return int|null
+     * @return User|null
      */
-    public function getEmployerNumber(): ?int
+    public function getUserProfile(): ?User
     {
-        return $this->employer_number;
+        return $this->user_profile;
     }
 
     /**
-     * @param int|null $employer_number
+     * @param User|null $user_profile
      */
-    public function setEmployerNumber(?int $employer_number): void
+    public function setUserProfile(?User $user_profile): void
     {
-        $this->employer_number = $employer_number;
+        $this->user_profile = $user_profile;
     }
+
+
 
 }

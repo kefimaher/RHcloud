@@ -12,14 +12,6 @@ class UserProfile
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
-
-
-    /**
-     * @ORM\OneToOne(targetEntity="User", inversedBy="employer_number")
-     * @ORM\JoinColumn(name="employer_number", referencedColumnName="employer_number")
-     */
-    #[ORM\Column]
-    private ?int $employer_number = null;
     #[ORM\Column()]
     private ?int $id_conge = null;
     #[ORM\Column(length: 180)]
@@ -50,6 +42,8 @@ class UserProfile
     private ?string $contract_type = null;
     #[ORM\Column(length: 180)]
     private ?string $status = null;
+    #[ORM\Column(length: 180)]
+    private ?int $employer_number = null;
 
     public function getId(): ?int
     {
