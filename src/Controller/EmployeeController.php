@@ -18,18 +18,19 @@ class EmployeeController extends AbstractController
 
         $Userprofile = $doctrine -> getRepository(UserProfile::class);
         $listiserprofile = $Userprofile ->findAll() ;
-
-
-
-
-        $User = $doctrine -> getRepository(User::class);
+         $User = $doctrine -> getRepository(User::class);
         $listuser=$User ->findAll();
-
-
-
-
         return $this->render('employees/emplooyeslist.html.twig', array('users' => $listuser,'profiles'  => $listiserprofile));
     }
+    #[Route('/addemployee', name: 'addemployee')]
+    public function addemployeeAction(ManagerRegistry $doctrine ) : Response
+    {
+
+        return $this->render('employees/addemployee.html.twig');
+    }
+
+
+
 
 
 }

@@ -1,0 +1,181 @@
+{% extends 'home.html.twig' %}
+
+{% block content %}
+
+    <div class="" role="main">
+        <div class="">
+            <div class="page-title">
+                <div class="title_right">
+                    <div class="col-md-5 col-sm-5 form-group pull-right top_search">
+                        <div class="input-group">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Nouvelle Personne</h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <form class="" action="" method="post" novalidate>
+
+
+                                <div class="field item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Numéro D'employeur <span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input type="number" class="form-control" data-validate-length-range="6" data-validate-words="2" name="numero"   required="required" />
+                                    </div>
+                                </div>
+
+
+                                <div class="field item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Prenom<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="prenom"  required="required" />
+                                    </div>
+                                </div>
+
+
+                                <div class="field item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Nom<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="nom"  required="required" />
+                                    </div>
+                                </div>
+
+
+
+                                <div class="field item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Poste<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input class="form-control" class='optional' name="poste" data-validate-length-range="5,15" type="text" /></div>
+                                </div>
+
+
+
+                                <div class="field item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">email<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input class="form-control" name="email" class='email' required="required" type="email" /></div>
+                                </div>
+
+
+                                <div class="field item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Mot de passe<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input class="form-control" type="password" id="password1" name="motdepasse" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}" title="Minimum 8 Characters Including An Upper And Lower Case Letter, A Number And A Unique Character" required />
+                                    </div>
+                                </div>
+
+
+                                <div class="field item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">L’adresse <span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input class="form-control" class='optional' name="adresse" data-validate-length-range="5,15" type="text" /></div>
+                                </div>
+
+
+
+                                <div class="field item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Type de contrat<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input class="form-control" class='optional' name="type" data-validate-length-range="5,15" type="text" /></div>
+                                </div>
+
+                                <div class="field item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Statut actuel<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input class="form-control" class='optional' name="status" data-validate-length-range="5,15" type="text" /></div>
+                                </div>
+
+
+
+                                <div class="field item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Adresse postale <span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input class="form-control" type="number" class='number' name="adressepostale" data-validate-minmax="10,100" required='required'></div>
+                                </div>
+
+
+
+                                <div class="field item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Date de naissance<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input class="form-control" class='date' type="date" name="datenaissance" required='required'></div>
+                                </div>
+
+
+
+                                <div class="field item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Grade<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input class="form-control" type="tel" class='tel' name="grade" required='required' data-validate-length-range="8,20" /></div>
+                                </div>
+
+
+
+
+                                <div class="field item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Telephone<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input class="form-control" type="tel" class='tel' name="phone" required='required' data-validate-length-range="8,20" /></div>
+                                </div>
+
+
+                                <div class="field item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Numero du fisher medical<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input class="form-control" type="tel" class='tel' name="medical" required='required' data-validate-length-range="8,20" /></div>
+                                </div>
+
+                                <div class="field item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Supérieur hiérarchique<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input class="form-control" type="tel" class='tel' name="superieurhierarchique" required='required' data-validate-length-range="8,20" /></div>
+                                </div>
+
+
+                                <div class="field item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Date d'assigner la contrat<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input class="form-control" class='date' type="date" name="datecontract" required='required'></div>
+                                </div>
+
+
+
+
+
+
+
+
+                                <div class="field item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">message<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <textarea required="required" name='message'></textarea></div>
+                                </div>
+                                <div class="ln_solid">
+                                    <div class="form-group">
+                                        <div class="col-md-6 offset-md-3">
+                                            <button type='submit' class="btn btn-primary">Submit</button>
+                                            <button type='reset' class="btn btn-success">Reset</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

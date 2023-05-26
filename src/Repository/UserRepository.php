@@ -8,6 +8,8 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
+use function MongoDB\BSON\fromJSON;
+use function MongoDB\BSON\fromPHP;
 
 /**
  * @extends ServiceEntityRepository<User>
@@ -80,4 +82,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+
+
 }

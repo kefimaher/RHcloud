@@ -10,16 +10,18 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use function Webmozart\Assert\Tests\StaticAnalysis\string;
 
 
+
+/**
+ * @property $_em
+ */
 class LoginController extends  AbstractController
 {
 
     #[Route('/dashbroad', name: 'dashbroad')]
     public function dashbroadAction(ManagerRegistry $doctrine ) : Response
     {
-
         $User = $doctrine->getRepository(User::class);
         $listuser = $User->findAll();
 
