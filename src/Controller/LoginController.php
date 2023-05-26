@@ -10,6 +10,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use function Webmozart\Assert\Tests\StaticAnalysis\string;
 
 
 class LoginController extends  AbstractController
@@ -19,10 +20,9 @@ class LoginController extends  AbstractController
     public function dashbroadAction(ManagerRegistry $doctrine ) : Response
     {
 
-        $User = $doctrine -> getRepository(User::class);
-        $listuser=$User ->findAll();
+        $User = $doctrine->getRepository(User::class);
+        $listuser = $User->findAll();
+
         return $this->render('dashbroad/dashbroad.html.twig', array('users' => $listuser));
+        }
     }
-
-
-}

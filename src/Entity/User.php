@@ -20,8 +20,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?User $user_profile = null;
     #[ORM\Column]
     private ?string $firstname = null;
     #[ORM\Column]
@@ -33,6 +31,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $realpassword = null;
 
+    #[ORM\Column(length: 180)]
+    private ?int $employer_number = null;
+
+
     #[ORM\Column]
     private array $roles = [];
 
@@ -41,6 +43,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     private ?string $password = null;
+
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?UserProfile $iduserprofile = null;
 
     public function getId(): ?int
     {
@@ -190,6 +195,34 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUserProfile(?User $user_profile): void
     {
         $this->user_profile = $user_profile;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getEmployerNumber(): ?int
+    {
+        return $this->employer_number;
+    }
+
+    /**
+     * @param int|null $employer_number
+     */
+    public function setEmployerNumber(?int $employer_number): void
+    {
+        $this->employer_number = $employer_number;
+    }
+
+    public function getIduserprofile(): ?UserProfile
+    {
+        return $this->iduserprofile;
+    }
+
+    public function setIduserprofile(?UserProfile $iduserprofile): self
+    {
+        $this->iduserprofile = $iduserprofile;
+
+        return $this;
     }
 
 

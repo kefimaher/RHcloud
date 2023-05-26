@@ -48,14 +48,14 @@
                     {% for user in users %}
 
                     <tr class="even pointer">
-                        <td class=""></td>
-                        <td class="">{{ user.firstname }}</td>
+                        <td class="">{{ user.employernumber }}</td>
+                        <td class="">{{ user.lastname }} {{ user.firstname }}</td>
                         <td class="">{{ user.email  }}</td>
                         <td class="">{{ user.fonction }}</td>
-                        <td class=""></td>
-                        <td class=""></td>
-                        <td class=""></td>
-                        <td class="last"><a href="#">link</a>
+                        <td class="">{{ user.firstname }}</td>
+                        <td class="">{{ user.firstname }}</td>
+                        <td class="">{{ user.firstname }}</td>
+                        <td class="last">{{ user.firstname }}<a href="#">link</a>
                         </td>
                     </tr>
 

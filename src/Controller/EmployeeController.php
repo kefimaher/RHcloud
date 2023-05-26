@@ -19,8 +19,14 @@ class EmployeeController extends AbstractController
         $Userprofile = $doctrine -> getRepository(UserProfile::class);
         $listiserprofile = $Userprofile ->findAll() ;
 
+
+
+
         $User = $doctrine -> getRepository(User::class);
         $listuser=$User ->findAll();
+
+
+
 
         return $this->render('employees/emplooyeslist.html.twig', array('users' => $listuser,'profiles'  => $listiserprofile));
     }
