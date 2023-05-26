@@ -13,37 +13,40 @@ class UserProfile
     #[ORM\Column]
     private ?int $id = null;
     #[ORM\Column()]
-    private ?int $id_conge = null;
+    private ?int $idconge = null;
     #[ORM\Column(length: 180)]
     private ?string $avatar = null;
     #[ORM\Column(length: 180)]
-    private ?string $date_of_birth = null;
+    private ?string $dateofbirth = null;
     #[ORM\Column(length: 180)]
     private ?string $adresse = null;
     #[ORM\Column(length: 180)]
-    private ?string $country_code = null;
+    private ?string $countrycode = null;
     #[ORM\Column()]
-    private ?int $medical_file_number = null;
+    private ?int $medicalfilenumber = null;
     #[ORM\Column(length: 180)]
-    private ?string $join_date = null;
+    private ?string $joindate = null;
     #[ORM\Column(length: 180)]
     private ?string $email = null;
     #[ORM\Column()]
-    private ?int $current_rank = null;
+    private ?int $currentrank = null;
     #[ORM\Column()]
-    private ?int $upper_hierarchy = null;
+    private ?int $upperhierarchy = null;
     #[ORM\Column()]
-    private ?int $day_off_available = null;
+    private ?int $dayoffavailable = null;
     #[ORM\Column()]
-    private ?int $sick_day = null;
+    private ?int $sickday = null;
     #[ORM\Column(length: 180)]
-    private ?string $day_out = null;
+    private ?string $dayout = null;
     #[ORM\Column(length: 180)]
     private ?string $contract_type = null;
     #[ORM\Column(length: 180)]
     private ?string $status = null;
     #[ORM\Column(length: 180)]
     private ?int $employer_number = null;
+
+    #[ORM\OneToOne(mappedBy: 'profile', cascade: ['persist', 'remove'])]
+    private ?User $user = null;
 
     public function getId(): ?int
     {
@@ -53,33 +56,17 @@ class UserProfile
     /**
      * @return int|null
      */
-    public function getEmployerNumber(): ?int
+    public function getIdconge(): ?int
     {
-        return $this->employer_number;
+        return $this->idconge;
     }
 
     /**
-     * @param int|null $employer_number
+     * @param int|null $idconge
      */
-    public function setEmployerNumber(?int $employer_number): void
+    public function setIdconge(?int $idconge): void
     {
-        $this->employer_number = $employer_number;
-    }
-
-    /**
-     * @return int|null
-     */
-    public function getIdConge(): ?int
-    {
-        return $this->id_conge;
-    }
-
-    /**
-     * @param int|null $id_conge
-     */
-    public function setIdConge(?int $id_conge): void
-    {
-        $this->id_conge = $id_conge;
+        $this->idconge = $idconge;
     }
 
     /**
@@ -101,17 +88,17 @@ class UserProfile
     /**
      * @return string|null
      */
-    public function getDateOfBirth(): ?string
+    public function getDateofbirth(): ?string
     {
-        return $this->date_of_birth;
+        return $this->dateofbirth;
     }
 
     /**
-     * @param string|null $date_of_birth
+     * @param string|null $dateofbirth
      */
-    public function setDateOfBirth(?string $date_of_birth): void
+    public function setDateofbirth(?string $dateofbirth): void
     {
-        $this->date_of_birth = $date_of_birth;
+        $this->dateofbirth = $dateofbirth;
     }
 
     /**
@@ -133,49 +120,49 @@ class UserProfile
     /**
      * @return string|null
      */
-    public function getCountryCode(): ?string
+    public function getCountrycode(): ?string
     {
-        return $this->country_code;
+        return $this->countrycode;
     }
 
     /**
-     * @param string|null $country_code
+     * @param string|null $countrycode
      */
-    public function setCountryCode(?string $country_code): void
+    public function setCountrycode(?string $countrycode): void
     {
-        $this->country_code = $country_code;
+        $this->countrycode = $countrycode;
     }
 
     /**
      * @return int|null
      */
-    public function getMedicalFileNumber(): ?int
+    public function getMedicalfilenumber(): ?int
     {
-        return $this->medical_file_number;
+        return $this->medicalfilenumber;
     }
 
     /**
-     * @param int|null $medical_file_number
+     * @param int|null $medicalfilenumber
      */
-    public function setMedicalFileNumber(?int $medical_file_number): void
+    public function setMedicalfilenumber(?int $medicalfilenumber): void
     {
-        $this->medical_file_number = $medical_file_number;
+        $this->medicalfilenumber = $medicalfilenumber;
     }
 
     /**
      * @return string|null
      */
-    public function getJoinDate(): ?string
+    public function getJoindate(): ?string
     {
-        return $this->join_date;
+        return $this->joindate;
     }
 
     /**
-     * @param string|null $join_date
+     * @param string|null $joindate
      */
-    public function setJoinDate(?string $join_date): void
+    public function setJoindate(?string $joindate): void
     {
-        $this->join_date = $join_date;
+        $this->joindate = $joindate;
     }
 
     /**
@@ -197,81 +184,81 @@ class UserProfile
     /**
      * @return int|null
      */
-    public function getCurrentRank(): ?int
+    public function getCurrentrank(): ?int
     {
-        return $this->current_rank;
+        return $this->currentrank;
     }
 
     /**
-     * @param int|null $current_rank
+     * @param int|null $currentrank
      */
-    public function setCurrentRank(?int $current_rank): void
+    public function setCurrentrank(?int $currentrank): void
     {
-        $this->current_rank = $current_rank;
-    }
-
-    /**
-     * @return int|null
-     */
-    public function getUpperHierarchy(): ?int
-    {
-        return $this->upper_hierarchy;
-    }
-
-    /**
-     * @param int|null $upper_hierarchy
-     */
-    public function setUpperHierarchy(?int $upper_hierarchy): void
-    {
-        $this->upper_hierarchy = $upper_hierarchy;
+        $this->currentrank = $currentrank;
     }
 
     /**
      * @return int|null
      */
-    public function getDayOffAvailable(): ?int
+    public function getUpperhierarchy(): ?int
     {
-        return $this->day_off_available;
+        return $this->upperhierarchy;
     }
 
     /**
-     * @param int|null $day_off_available
+     * @param int|null $upperhierarchy
      */
-    public function setDayOffAvailable(?int $day_off_available): void
+    public function setUpperhierarchy(?int $upperhierarchy): void
     {
-        $this->day_off_available = $day_off_available;
+        $this->upperhierarchy = $upperhierarchy;
     }
 
     /**
      * @return int|null
      */
-    public function getSickDay(): ?int
+    public function getDayoffavailable(): ?int
     {
-        return $this->sick_day;
+        return $this->dayoffavailable;
     }
 
     /**
-     * @param int|null $sick_day
+     * @param int|null $dayoffavailable
      */
-    public function setSickDay(?int $sick_day): void
+    public function setDayoffavailable(?int $dayoffavailable): void
     {
-        $this->sick_day = $sick_day;
+        $this->dayoffavailable = $dayoffavailable;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getSickday(): ?int
+    {
+        return $this->sickday;
+    }
+
+    /**
+     * @param int|null $sickday
+     */
+    public function setSickday(?int $sickday): void
+    {
+        $this->sickday = $sickday;
     }
 
     /**
      * @return string|null
      */
-    public function getDayOut(): ?string
+    public function getDayout(): ?string
     {
-        return $this->day_out;
+        return $this->dayout;
     }
 
     /**
-     * @param string|null $day_out
+     * @param string|null $dayout
      */
-    public function setDayOut(?string $day_out): void
+    public function setDayout(?string $dayout): void
     {
-        $this->day_out = $day_out;
+        $this->dayout = $dayout;
     }
 
     /**
@@ -304,6 +291,45 @@ class UserProfile
     public function setStatus(?string $status): void
     {
         $this->status = $status;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getEmployerNumber(): ?int
+    {
+        return $this->employer_number;
+    }
+
+    /**
+     * @param int|null $employer_number
+     */
+    public function setEmployerNumber(?int $employer_number): void
+    {
+        $this->employer_number = $employer_number;
+    }
+
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($user === null && $this->user !== null) {
+            $this->user->setProfile(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($user !== null && $user->getProfile() !== $this) {
+            $user->setProfile($this);
+        }
+
+        $this->user = $user;
+
+        return $this;
     }
 
 

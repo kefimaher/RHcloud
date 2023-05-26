@@ -44,8 +44,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?UserProfile $iduserprofile = null;
+    #[ORM\OneToOne(inversedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?UserProfile $profile = null;
 
     public function getId(): ?int
     {
@@ -182,22 +182,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return User|null
-     */
-    public function getUserProfile(): ?User
-    {
-        return $this->user_profile;
-    }
-
-    /**
-     * @param User|null $user_profile
-     */
-    public function setUserProfile(?User $user_profile): void
-    {
-        $this->user_profile = $user_profile;
-    }
-
-    /**
      * @return int|null
      */
     public function getEmployerNumber(): ?int
@@ -213,14 +197,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->employer_number = $employer_number;
     }
 
-    public function getIduserprofile(): ?UserProfile
+    public function getProfile(): ?UserProfile
     {
-        return $this->iduserprofile;
+        return $this->profile;
     }
 
-    public function setIduserprofile(?UserProfile $iduserprofile): self
+    public function setProfile(?UserProfile $profile): self
     {
-        $this->iduserprofile = $iduserprofile;
+        $this->profile = $profile;
 
         return $this;
     }

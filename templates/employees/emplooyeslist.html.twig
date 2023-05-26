@@ -45,6 +45,7 @@
                     </thead>
 
                     <tbody>
+                    {% if users %}
                     {% for user in users %}
 
                     <tr class="even pointer">
@@ -52,14 +53,14 @@
                         <td class="">{{ user.lastname }} {{ user.firstname }}</td>
                         <td class="">{{ user.email  }}</td>
                         <td class="">{{ user.fonction }}</td>
-                        <td class="">{{ user.firstname }}</td>
-                        <td class="">{{ user.firstname }}</td>
-                        <td class="">{{ user.firstname }}</td>
-                        <td class="last">{{ user.firstname }}<a href="#">link</a>
+                        <td class="">{{ user.profile.status }}</td>
+                        <td class="">{{ user.profile.joindate }}</td>
+                        <td class="">{{ user.profile.contracttype }}</td>
+                        <td class="last"><a href="#">link</a>
                         </td>
                     </tr>
-
                     {% endfor %}
+                    {% endif %}
                     </tbody>
                 </table>
             </div>
