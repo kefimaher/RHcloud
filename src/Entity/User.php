@@ -29,6 +29,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $fonction = null;
 
     #[ORM\Column]
+    private ?string $employernumber = null;
+
+    #[ORM\Column]
     private ?string $realpassword = null;
 
     #[ORM\Column]
@@ -186,6 +189,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->profile = $profile;
 
         return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getEmployernumber(): ?string
+    {
+        return $this->employernumber;
+    }
+
+    /**
+     * @param string|null $employernumber
+     */
+    public function setEmployernumber(?string $employernumber): void
+    {
+        $this->employernumber = $employernumber;
     }
 
 

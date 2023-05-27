@@ -28,7 +28,7 @@
 
 
                                 <div class="field item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Numéro D'employeur <span class="required">*</span></label>
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Numéro D'employeur</label>
                                     <div class="col-md-6 col-sm-6">
                                         <input type="number" class="form-control" data-validate-length-range="6" data-validate-words="2" name="numero"   required="required" />
                                     </div>
@@ -36,24 +36,24 @@
 
 
                                 <div class="field item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Prenom<span class="required">*</span></label>
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Prenom</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="prenom"  required="required" />
+                                        <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="prenom" />
                                     </div>
                                 </div>
 
 
                                 <div class="field item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Nom<span class="required">*</span></label>
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Nom</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="nom"  required="required" />
+                                        <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="nom"/>
                                     </div>
                                 </div>
 
 
 
                                 <div class="field item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Poste<span class="required">*</span></label>
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Poste</label>
                                     <div class="col-md-6 col-sm-6">
                                         <input class="form-control" class='optional' name="poste" data-validate-length-range="5,15" type="text" /></div>
                                 </div>
@@ -61,14 +61,25 @@
 
 
                                 <div class="field item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3  label-align">email<span class="required">*</span></label>
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">email</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" name="email" class='email' required="required" type="email" /></div>
+                                        <input class="form-control" class='email' required="required"  {{ form_widget(registrationForm.email) }}
+                                    </div>
                                 </div>
 
+                                {{ form_row(registrationForm.plainPassword, {label: 'Password'}) }}
+                                {{ form_row(registrationForm.firstname) }}
+                                {{ form_row(registrationForm.lastname) }}
+                                {{ form_row(registrationForm.fonction) }}
+
+                                {{ form_row(registrationForm.employernumber) }}
+                                <button type="submit" class="btn">Register</button>
+                                {{ form_end(registrationForm) }}
+
+                                <!--
 
                                 <div class="field item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Mot de passe<span class="required">*</span></label>
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Mot de passe></label>
                                     <div class="col-md-6 col-sm-6">
                                         <input class="form-control" type="password" id="password1" name="motdepasse" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}" title="Minimum 8 Characters Including An Upper And Lower Case Letter, A Number And A Unique Character" required />
                                     </div>
@@ -76,7 +87,7 @@
 
 
                                 <div class="field item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3  label-align">L’adresse <span class="required">*</span></label>
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">L’adresse</label>
                                     <div class="col-md-6 col-sm-6">
                                         <input class="form-control" class='optional' name="adresse" data-validate-length-range="5,15" type="text" /></div>
                                 </div>
@@ -149,7 +160,7 @@
                                 <div class="ln_solid">
                                     <div class="form-group">
                                         <div class="col-md-6 offset-md-3">
-                                            <button type='submit' class="btn btn-primary">Submit</button>
+
                                             <button type='reset' class="btn btn-success">Reset</button>
                                         </div>
                                     </div>
@@ -164,17 +175,6 @@
 
 
 
-    <h1>maher</h1>
-
-
-    {{ form_row(registrationForm.email) }}
-    {{ form_row(registrationForm.plainPassword, {label: 'Password'}) }}
-    {{ form_row(registrationForm.firstname) }}
-    {{ form_row(registrationForm.lastname) }}
-    {{ form_row(registrationForm.fonction) }}
-    {{ form_row(registrationForm.agreeTerms) }}
-    <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
 
 
 

@@ -19,68 +19,41 @@ class RegistrationController extends AbstractController
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
         $user = new User();
-      //  $userprofile = new UserProfile() ;
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
-
-
         if ($form->isSubmitted() && $form->isValid()) {
 
-
-    /*
-            $numero=$form->get('numero')->getData();
-            $nom=$form->get('nom')->getData();
-            $prenom=$form->get('prenom')->getData();
-            $poste=$form->get('poste')->getData();
-            $email=$form->get('email')->getData();
-            $password=$form->get('plainPassword')->getData() ;
-            $adresse=$form->get('plainPassword')->getData();
-            $typecontract=$form->get('plainPassword')->getData();
-            $statut=$form->get('plainPassword')->getData();
-            $adressepostal=$form->get('plainPassword')->getData();
-            $datenaissance=$form->get('plainPassword')->getData();
-            $grade=$form->get('plainPassword')->getData();
-            $Telephone=$form->get('plainPassword')->getData();
-            $fishiermediale=$form->get('plainPassword')->getData();
-            $suph=$form->get('plainPassword')->getData();
-            $datecontract=$form->get('plainPassword')->getData();
-
-
-
-            echo ($numero) ;
-            echo ($nom) ;
-            echo ($prenom) ;
-            echo ($poste) ;
-            echo ($email) ;
-            echo ($password) ;
-            echo ($adresse) ;
-            echo ($typecontract) ;
-            echo ($statut) ;
-            echo ($adressepostal) ;
-            echo ($datenaissance) ;
-            echo ($grade) ;
-            echo ($Telephone) ;
-            echo ($fishiermediale) ;
-            echo ($suph) ;
-            echo ($datecontract) ;
-
-    */
-
             $user->setRealpassword($form->get('plainPassword')->getData());
+
+            $password = $form->get('plainPassword')->getData() ;
+            $nom = $form->get('firstname')->getData() ;
+            $prenom = $form->get('lastname')->getData() ;
+            $fonction = $form->get('fonction')->getData() ;
+            $email = $form->get('email')->getData() ;
+            $employernumber = $form->get('employernumber')->getData() ;
+
+            echo $password ;
+            echo ('<br>') ;
+            echo $nom ;
+            echo ('<br>') ;
+            echo $prenom ;
+            echo ('<br>') ;
+            echo $fonction ;
+            echo ('<br>') ;
+            echo $email ;
+            echo ('<br>') ;
+            echo $employernumber ;
+
+
+            die();
             $user->setPassword($userPasswordHasher->hashPassword($user, $form->get('plainPassword')->getData()));
-
-            echo ("maher");
-            die() ;
-
             $entityManager->persist($user);
             $entityManager->flush();
-
-
             return $this->redirectToRoute('_profiler_home');
         }
-
         return $this->render('employees/addemployee.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
+
     }
 }
