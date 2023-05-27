@@ -15,8 +15,6 @@ class UserProfile
     #[ORM\Column()]
     private ?int $idconge = null;
     #[ORM\Column(length: 180)]
-    private ?string $avatar = null;
-    #[ORM\Column(length: 180)]
     private ?string $dateofbirth = null;
     #[ORM\Column(length: 180)]
     private ?string $adresse = null;
@@ -26,8 +24,6 @@ class UserProfile
     private ?int $medicalfilenumber = null;
     #[ORM\Column(length: 180)]
     private ?string $joindate = null;
-    #[ORM\Column(length: 180)]
-    private ?string $email = null;
     #[ORM\Column()]
     private ?int $currentrank = null;
     #[ORM\Column()]

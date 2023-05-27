@@ -1,7 +1,7 @@
 {% extends 'home.html.twig' %}
 
 {% block content %}
-
+    {{ form_start(registrationForm) }}
     <div class="" role="main">
         <div class="">
             <div class="page-title">
@@ -140,26 +140,12 @@
                                     <div class="col-md-6 col-sm-6">
                                         <input class="form-control" type="tel" class='tel' name="superieurhierarchique" required='required' data-validate-length-range="8,20" /></div>
                                 </div>
-
-
                                 <div class="field item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3  label-align">Date d'assigner la contrat<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
                                         <input class="form-control" class='date' type="date" name="datecontract" required='required'></div>
                                 </div>
 
-
-
-
-
-
-
-
-                                <div class="field item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3  label-align">message<span class="required">*</span></label>
-                                    <div class="col-md-6 col-sm-6">
-                                        <textarea required="required" name='message'></textarea></div>
-                                </div>
                                 <div class="ln_solid">
                                     <div class="form-group">
                                         <div class="col-md-6 offset-md-3">
@@ -175,6 +161,20 @@
             </div>
         </div>
     </div>
+
+
+
+    <h1>maher</h1>
+
+
+    {{ form_row(registrationForm.email) }}
+    {{ form_row(registrationForm.plainPassword, {label: 'Password'}) }}
+    {{ form_row(registrationForm.firstname) }}
+    {{ form_row(registrationForm.lastname) }}
+    {{ form_row(registrationForm.fonction) }}
+    {{ form_row(registrationForm.agreeTerms) }}
+    <button type="submit" class="btn">Register</button>
+    {{ form_end(registrationForm) }}
 
 
 

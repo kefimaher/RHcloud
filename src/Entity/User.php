@@ -31,10 +31,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $realpassword = null;
 
-    #[ORM\Column(length: 180)]
-    private ?int $employer_number = null;
-
-
     #[ORM\Column]
     private array $roles = [];
 
@@ -180,23 +176,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->fonction = $fonction;
     }
-
-    /**
-     * @return int|null
-     */
-    public function getEmployerNumber(): ?int
-    {
-        return $this->employer_number;
-    }
-
-    /**
-     * @param int|null $employer_number
-     */
-    public function setEmployerNumber(?int $employer_number): void
-    {
-        $this->employer_number = $employer_number;
-    }
-
     public function getProfile(): ?UserProfile
     {
         return $this->profile;

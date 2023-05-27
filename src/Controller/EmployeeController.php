@@ -22,6 +22,8 @@ class EmployeeController extends AbstractController
         $listuser=$User ->findAll();
         return $this->render('employees/emplooyeslist.html.twig', array('users' => $listuser,'profiles'  => $listiserprofile));
     }
+
+    /*
     #[Route('/addemployee', name: 'addemployee')]
     public function addemployeeAction(ManagerRegistry $doctrine ) : Response
     {
@@ -29,8 +31,5 @@ class EmployeeController extends AbstractController
         return $this->render('employees/addemployee.html.twig');
     }
 
-
-
-
-
+*/
 }

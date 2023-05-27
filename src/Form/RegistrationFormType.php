@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\User;
+use App\Entity\UserProfile;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -17,8 +18,19 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+
+
+   /*
+            ->add('dateofbirth')
+            ->add('adresse')
+            ->add('countrycode')
+            ->add('medicalfilenumber')
+            ->add('joindate')
+            ->add('currentrank')
+            ->add('upperhierarchy')
+   */
             ->add('email')
-            ->add('employernumber')
+          //  ->add('employernumber')
             ->add('firstname')
             ->add('lastname')
             ->add('fonction')
