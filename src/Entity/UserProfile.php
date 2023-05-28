@@ -44,6 +44,9 @@ class UserProfile
     #[ORM\Column(nullable: true)]
     private ?int $employer_number = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $telephone = null;
+
     #[ORM\OneToOne(mappedBy: 'profile', cascade: ['persist', 'remove'])]
     private ?User $user = null;
 
@@ -329,6 +332,22 @@ class UserProfile
         $this->user = $user;
 
         return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getTelephone(): ?int
+    {
+        return $this->telephone;
+    }
+
+    /**
+     * @param int|null $telephone
+     */
+    public function setTelephone(?int $telephone): void
+    {
+        $this->telephone = $telephone;
     }
 
 

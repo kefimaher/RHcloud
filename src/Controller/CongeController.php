@@ -13,7 +13,6 @@ class CongeController extends  AbstractController
     #[Route('/congelist', name: 'congelist')]
     public function congeslistAction(ManagerRegistry $doctrine ) : Response
     {
-
         return $this->render('conge/congelist.html.twig');
     }
 

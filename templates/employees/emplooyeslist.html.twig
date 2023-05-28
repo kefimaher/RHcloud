@@ -56,8 +56,7 @@
                         <td class="">{{ user.profile.status }}</td>
                         <td class="">{{ user.profile.joindate }}</td>
                         <td class="">{{ user.profile.contracttype }}</td>
-                        <td class="last"><a href="#">link</a>
-                        </td>
+                        <td class="last"><a href="{{ path('profilecomplet',{'id':user.profile.id}) }}">link</a></td>
                     </tr>
                     {% endfor %}
                     {% endif %}
