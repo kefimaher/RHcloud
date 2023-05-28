@@ -12,33 +12,36 @@ class UserProfile
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
-    #[ORM\Column()]
+    #[ORM\Column(nullable: true)]
     private ?int $idconge = null;
-    #[ORM\Column(length: 180)]
+    #[ORM\Column(nullable: true)]
     private ?string $dateofbirth = null;
-    #[ORM\Column(length: 180)]
+
+    #[ORM\Column(nullable: true)]
     private ?string $adresse = null;
-    #[ORM\Column(length: 180)]
+
+    #[ORM\Column(nullable: true)]
     private ?string $countrycode = null;
-    #[ORM\Column()]
+    #[ORM\Column(nullable: true)]
     private ?int $medicalfilenumber = null;
-    #[ORM\Column(length: 180)]
+    #[ORM\Column(nullable: true)]
     private ?string $joindate = null;
-    #[ORM\Column()]
+    #[ORM\Column(nullable: true)]
     private ?int $currentrank = null;
-    #[ORM\Column()]
+    #[ORM\Column(nullable: true)]
     private ?int $upperhierarchy = null;
-    #[ORM\Column()]
+    #[ORM\Column(nullable: true)]
     private ?int $dayoffavailable = null;
-    #[ORM\Column()]
+    #[ORM\Column(nullable: true)]
     private ?int $sickday = null;
-    #[ORM\Column(length: 180)]
+    #[ORM\Column(nullable: true)]
     private ?string $dayout = null;
-    #[ORM\Column(length: 180)]
+    #[ORM\Column(nullable: true)]
     private ?string $contract_type = null;
-    #[ORM\Column(length: 180)]
+
+    #[ORM\Column(nullable: true)]
     private ?string $status = null;
-    #[ORM\Column(length: 180)]
+    #[ORM\Column(nullable: true)]
     private ?int $employer_number = null;
 
     #[ORM\OneToOne(mappedBy: 'profile', cascade: ['persist', 'remove'])]

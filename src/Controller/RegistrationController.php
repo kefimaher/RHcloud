@@ -19,37 +19,27 @@ class RegistrationController extends AbstractController
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
         $user = new User();
+        $userprofile = new UserProfile() ;  // cree un user profile vide pour utlise pour complete la table user profile
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-
+        if ($form->isSubmitted()) {
             $user->setRealpassword($form->get('plainPassword')->getData());
-
-            $password = $form->get('plainPassword')->getData() ;
-            $nom = $form->get('firstname')->getData() ;
-            $prenom = $form->get('lastname')->getData() ;
-            $fonction = $form->get('fonction')->getData() ;
-            $email = $form->get('email')->getData() ;
-            $employernumber = $form->get('employernumber')->getData() ;
-
-            echo $password ;
-            echo ('<br>') ;
-            echo $nom ;
-            echo ('<br>') ;
-            echo $prenom ;
-            echo ('<br>') ;
-            echo $fonction ;
-            echo ('<br>') ;
-            echo $email ;
-            echo ('<br>') ;
-            echo $employernumber ;
-
-
-            die();
+            $user->setFirstname($form->get('firstname')->getData());
+            $user->setLastname($form->get('lastname')->getData());
+            $user->setFonction($form->get('fonction')->getData());
+            $user->setEmployernumber($form->get('employernumber')->getData());
+            $user->setEmail($form->get('email')->getData());
             $user->setPassword($userPasswordHasher->hashPassword($user, $form->get('plainPassword')->getData()));
+            $userprofile->setEmployerNumber($form->get('employernumber')->getData());
+            $userprofile->setDayoffavailable(22);
+            $userprofile->setSickday(5);
+            $userprofile->setDayout(0);
+            $user->setProfile($userprofile);
+            $entityManager->persist($userprofile);
+            $entityManager->flush();
             $entityManager->persist($user);
             $entityManager->flush();
-            return $this->redirectToRoute('_profiler_home');
+            return $this->redirectToRoute('dashbroad');
         }
         return $this->render('employees/addemployee.html.twig', [
             'registrationForm' => $form->createView(),

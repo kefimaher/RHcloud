@@ -2,6 +2,10 @@
 
 {% block content %}
     {{ form_start(registrationForm) }}
+
+  <br> <br> <br> <br>
+
+
     <div class="" role="main">
         <div class="">
             <div class="page-title">
@@ -30,50 +34,60 @@
                                 <div class="field item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3  label-align">Numéro D'employeur</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input type="number" class="form-control" data-validate-length-range="6" data-validate-words="2" name="numero"   required="required" />
+                                        <input type="number" class="form-control" {{ form_widget(registrationForm.employernumber) }}
                                     </div>
                                 </div>
 
 
-                                <div class="field item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Prenom</label>
-                                    <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="prenom" />
-                                    </div>
-                                </div>
+
 
 
                                 <div class="field item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3  label-align">Nom</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="nom"/>
+                                        <input class="form-control"  {{ form_widget(registrationForm.firstname) }}
                                     </div>
                                 </div>
 
+
+    <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Prénom</label>
+        <div class="col-md-6 col-sm-6">
+            <input class="form-control"    {{ form_widget(registrationForm.lastname) }}
+        </div>
+    </div>
 
 
                                 <div class="field item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3  label-align">Poste</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" class='optional' name="poste" data-validate-length-range="5,15" type="text" /></div>
+                                        <input class="form-control" class='optional' type="text"  {{ form_widget(registrationForm.fonction) }}
+                                    </div>
                                 </div>
 
 
 
                                 <div class="field item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3  label-align">email</label>
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Email</label>
                                     <div class="col-md-6 col-sm-6">
                                         <input class="form-control" class='email' required="required"  {{ form_widget(registrationForm.email) }}
                                     </div>
                                 </div>
 
-                                {{ form_row(registrationForm.plainPassword, {label: 'Password'}) }}
-                                {{ form_row(registrationForm.firstname) }}
-                                {{ form_row(registrationForm.lastname) }}
-                                {{ form_row(registrationForm.fonction) }}
+    <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Mot de passe</label>
+        <div class="col-md-6 col-sm-6">
+            <input class="form-control" type="password" required="required"   {{ form_widget(registrationForm.plainPassword, {label: 'Password'}) }}
+        </div>
+    </div>
 
-                                {{ form_row(registrationForm.employernumber) }}
-                                <button type="submit" class="btn">Register</button>
+
+
+
+
+
+
+                                <button type="submit" class="btn btn-success">Register</button>
                                 {{ form_end(registrationForm) }}
 
                                 <!--
