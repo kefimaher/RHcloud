@@ -29,16 +29,12 @@ class EmployeeController extends AbstractController
 
 
     #[Route('/profilecomplet/{id}', name: 'profilecomplet')]
-    public function profile($id,Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
+    public function profile(ManagerRegistry $doctrine , $id,Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
-     //   $userprofile = $em->getRepository('SocieteBundle:Conge')->findOneBy(array('id' => $id));
-        echo ($id) ;
-        die();
-        $userprofile = new UserProfile();
-
-
-        $form = $this->createForm(ProfileFormType::class, $userprofile);
-        $form->handleRequest($request);
+       $repository = $doctrine->getRepository(UserProfile::class);
+       $userprofile = $repository ->find($id);
+       $form = $this->createForm(ProfileFormType::class, $userprofile);
+       $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
 
@@ -52,10 +48,11 @@ class EmployeeController extends AbstractController
             $userprofile->setCurrentrank($form->get('currentrank')->getData());
             $userprofile->setTelephone($form->get('telephone')->getData());
             $userprofile->setUpperhierarchy($form->get('upperhierarchy')->getData());
+            $entityManager->persist($userprofile);
+            $entityManager->flush();
             return $this->redirectToRoute('dashbroad');
 
-            // $entityManager->persist($user);
-            // $entityManager->flush();
+
         }
 
            return $this->render('employees/profile.html.twig', ['registrationForm' => $form->createView(),]);
