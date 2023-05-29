@@ -31,10 +31,11 @@ class EmployeeController extends AbstractController
     #[Route('/profilecomplet/{id}', name: 'profilecomplet')]
     public function profile($id,Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
-        echo('11111111111111111111111111111');
+     //   $userprofile = $em->getRepository('SocieteBundle:Conge')->findOneBy(array('id' => $id));
         echo ($id) ;
         die();
         $userprofile = new UserProfile();
+
 
         $form = $this->createForm(ProfileFormType::class, $userprofile);
         $form->handleRequest($request);
