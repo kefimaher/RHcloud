@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Form;
-
 use App\Entity\User;
 use App\Entity\UserProfile;
 use Symfony\Component\Form\AbstractType;
@@ -12,13 +10,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
-
 class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-
             ->add('email')
             ->add('employernumber')
             ->add('firstname')
@@ -43,7 +39,6 @@ class RegistrationFormType extends AbstractType
             ])
         ;
     }
-
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

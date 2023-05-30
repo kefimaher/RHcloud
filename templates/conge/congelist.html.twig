@@ -25,35 +25,32 @@
                     <table class="table table-striped jambo_table bulk_action">
                         <thead>
                         <tr class="headings">
-                            <th class="column-title">Numéro d'employeur </th>
-                            <th class="column-title">Nom et Prénom</th>
-                            <th class="column-title">E mail </th>
-                            <th class="column-title">Fontion</th>
+                            <th class="column-title">Numéro du conge </th>
+                            <th class="column-title">Date debut</th>
+                            <th class="column-title">Date fin</th>
+                            <th class="column-title">Nombre des jour </th>
                             <th class="column-title">Statut</th>
-                            <th class="column-title">date d'entrée</th>
-                            <th class="column-title">Type de contrat de travail </th>
-                            <th class="column-title no-link last"><span class="nobr">Modifier un employeur</span>
-                            </th>
+                            <th class="column-title">Jour disponible</th>
+                            <th class="column-title no-link last"><span class="nobr">Accepter</span></th>
+                            <th class="column-title no-link last"><span class="nobr">Refsue</span></th>
                             <th class="bulk-actions" colspan="7">
                                 <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
                             </th>
                         </tr>
                         </thead>
                         <tbody>
-                        {% if conges %}
                             {% for conge in conges %}
                                 <tr class="even pointer">
-                                    <td class=""></td>
-                                    <td class=""></td>
-                                    <td class=""></td>
-                                    <td class=""></td>
-                                    <td class=""></td>
-                                    <td class=""></td>
-                                    <td class=""></td>
-                                    <td class="last"><a href=""><button type="button" class="btn btn-sm btn-round btn-success">Modifier</button></a></td>
+                                    <td class="">{{ conge.id }}</td>
+                                    <td class="">{{ conge.startday }}</td>
+                                    <td class="">{{ conge.endday }}</td>
+                                    <td class="">{{ conge.typeconge }}</td>
+                                    <td class="">{{ conge.statuts }}</td>
+                                    <td class="">{{ conge.nombredujour }}</td>
+                                    <td class="last"><a href=""><button type="button" class="btn btn-sm btn-round btn-success">Vlider</button></a></td>
+                                    <td class="last"><a href=""><button type="button" class="btn btn-sm btn-round btn-danger">Rejeter</button></a></td>
                                 </tr>
                             {% endfor %}
-                        {% endif %}
                         </tbody>
                     </table>
                 </div>

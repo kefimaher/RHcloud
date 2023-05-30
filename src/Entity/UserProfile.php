@@ -1,10 +1,7 @@
 <?php
-
 namespace App\Entity;
-
 use App\Repository\UserProfileRepository;
 use Doctrine\ORM\Mapping as ORM;
-
 #[ORM\Entity(repositoryClass: UserProfileRepository::class)]
 class UserProfile
 {
@@ -16,10 +13,8 @@ class UserProfile
     private ?int $idconge = null;
     #[ORM\Column(nullable: true)]
     private ?string $dateofbirth = null;
-
     #[ORM\Column(nullable: true)]
     private ?string $adresse = null;
-
     #[ORM\Column(nullable: true)]
     private ?string $countrycode = null;
     #[ORM\Column(nullable: true)]
@@ -43,18 +38,14 @@ class UserProfile
     private ?string $status = null;
     #[ORM\Column(nullable: true)]
     private ?int $employer_number = null;
-
     #[ORM\Column(nullable: true)]
     private ?int $telephone = null;
-
     #[ORM\OneToOne(mappedBy: 'profile', cascade: ['persist', 'remove'])]
     private ?User $user = null;
-
     public function getId(): ?int
     {
         return $this->id;
     }
-
     /**
      * @return int|null
      */
@@ -62,7 +53,6 @@ class UserProfile
     {
         return $this->idconge;
     }
-
     /**
      * @param int|null $idconge
      */
@@ -70,7 +60,6 @@ class UserProfile
     {
         $this->idconge = $idconge;
     }
-
     /**
      * @return string|null
      */
@@ -78,7 +67,6 @@ class UserProfile
     {
         return $this->avatar;
     }
-
     /**
      * @param string|null $avatar
      */
@@ -86,7 +74,6 @@ class UserProfile
     {
         $this->avatar = $avatar;
     }
-
     /**
      * @return string|null
      */
@@ -94,7 +81,6 @@ class UserProfile
     {
         return $this->dateofbirth;
     }
-
     /**
      * @param string|null $dateofbirth
      */
@@ -102,7 +88,6 @@ class UserProfile
     {
         $this->dateofbirth = $dateofbirth;
     }
-
     /**
      * @return string|null
      */
@@ -110,7 +95,6 @@ class UserProfile
     {
         return $this->adresse;
     }
-
     /**
      * @param string|null $adresse
      */
@@ -118,7 +102,6 @@ class UserProfile
     {
         $this->adresse = $adresse;
     }
-
     /**
      * @return string|null
      */
@@ -126,7 +109,6 @@ class UserProfile
     {
         return $this->countrycode;
     }
-
     /**
      * @param string|null $countrycode
      */
@@ -134,7 +116,6 @@ class UserProfile
     {
         $this->countrycode = $countrycode;
     }
-
     /**
      * @return int|null
      */
@@ -142,7 +123,6 @@ class UserProfile
     {
         return $this->medicalfilenumber;
     }
-
     /**
      * @param int|null $medicalfilenumber
      */
@@ -150,7 +130,6 @@ class UserProfile
     {
         $this->medicalfilenumber = $medicalfilenumber;
     }
-
     /**
      * @return string|null
      */
@@ -158,7 +137,6 @@ class UserProfile
     {
         return $this->joindate;
     }
-
     /**
      * @param string|null $joindate
      */
@@ -166,7 +144,6 @@ class UserProfile
     {
         $this->joindate = $joindate;
     }
-
     /**
      * @return string|null
      */
@@ -174,7 +151,6 @@ class UserProfile
     {
         return $this->email;
     }
-
     /**
      * @param string|null $email
      */
@@ -182,7 +158,6 @@ class UserProfile
     {
         $this->email = $email;
     }
-
     /**
      * @return int|null
      */
@@ -190,7 +165,6 @@ class UserProfile
     {
         return $this->currentrank;
     }
-
     /**
      * @param int|null $currentrank
      */
@@ -198,7 +172,6 @@ class UserProfile
     {
         $this->currentrank = $currentrank;
     }
-
     /**
      * @return int|null
      */
@@ -206,7 +179,6 @@ class UserProfile
     {
         return $this->upperhierarchy;
     }
-
     /**
      * @param int|null $upperhierarchy
      */
@@ -214,7 +186,6 @@ class UserProfile
     {
         $this->upperhierarchy = $upperhierarchy;
     }
-
     /**
      * @return int|null
      */
@@ -222,7 +193,6 @@ class UserProfile
     {
         return $this->dayoffavailable;
     }
-
     /**
      * @param int|null $dayoffavailable
      */
@@ -230,7 +200,6 @@ class UserProfile
     {
         $this->dayoffavailable = $dayoffavailable;
     }
-
     /**
      * @return int|null
      */
@@ -238,7 +207,6 @@ class UserProfile
     {
         return $this->sickday;
     }
-
     /**
      * @param int|null $sickday
      */
@@ -246,7 +214,6 @@ class UserProfile
     {
         $this->sickday = $sickday;
     }
-
     /**
      * @return string|null
      */
@@ -254,7 +221,6 @@ class UserProfile
     {
         return $this->dayout;
     }
-
     /**
      * @param string|null $dayout
      */
@@ -262,7 +228,6 @@ class UserProfile
     {
         $this->dayout = $dayout;
     }
-
     /**
      * @return string|null
      */
@@ -270,7 +235,6 @@ class UserProfile
     {
         return $this->contract_type;
     }
-
     /**
      * @param string|null $contract_type
      */
@@ -278,7 +242,6 @@ class UserProfile
     {
         $this->contract_type = $contract_type;
     }
-
     /**
      * @return string|null
      */
@@ -286,7 +249,6 @@ class UserProfile
     {
         return $this->status;
     }
-
     /**
      * @param string|null $status
      */
@@ -294,7 +256,6 @@ class UserProfile
     {
         $this->status = $status;
     }
-
     /**
      * @return int|null
      */
@@ -302,7 +263,6 @@ class UserProfile
     {
         return $this->employer_number;
     }
-
     /**
      * @param int|null $employer_number
      */
@@ -310,13 +270,10 @@ class UserProfile
     {
         $this->employer_number = $employer_number;
     }
-
-
     public function getUser(): ?User
     {
         return $this->user;
     }
-
     public function setUser(?User $user): self
     {
         // unset the owning side of the relation if necessary
@@ -328,9 +285,7 @@ class UserProfile
         if ($user !== null && $user->getProfile() !== $this) {
             $user->setProfile($this);
         }
-
         $this->user = $user;
-
         return $this;
     }
 
@@ -341,7 +296,6 @@ class UserProfile
     {
         return $this->telephone;
     }
-
     /**
      * @param int|null $telephone
      */
@@ -349,8 +303,4 @@ class UserProfile
     {
         $this->telephone = $telephone;
     }
-
-
-
-
 }

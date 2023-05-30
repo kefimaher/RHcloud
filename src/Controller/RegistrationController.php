@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Controller;
-
 use App\Entity\User;
 use App\Entity\UserProfile;
 use App\Form\RegistrationFormType;
@@ -12,7 +10,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
-
 class RegistrationController extends AbstractController
 {
     #[Route('/addemployee', name: 'addemployee')]
@@ -44,6 +41,5 @@ class RegistrationController extends AbstractController
         return $this->render('employees/addemployee.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
-
     }
 }

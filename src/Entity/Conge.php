@@ -1,10 +1,7 @@
 <?php
-
 namespace App\Entity;
-
 use App\Repository\CongeRepository;
 use Doctrine\ORM\Mapping as ORM;
-
 #[ORM\Entity(repositoryClass: CongeRepository::class)]
 class Conge
 {
@@ -12,45 +9,36 @@ class Conge
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
-
     #[ORM\Column(nullable: true)]
     private ?string $start_day = null;
     #[ORM\Column(nullable: true)]
     private ?string $end_day = null;
-
     #[ORM\Column(nullable: true)]
     private ?string $type_conge = null;
-
     #[ORM\Column(nullable: true)]
     private ?string $cretification = null;
-
     #[ORM\Column(nullable: true)]
-    private array $day_number = [];
+    private ?int $nombredujour = null;
     #[ORM\Column(nullable: true)]
     private ?string $statuts = null;
     #[ORM\Column(nullable: true)]
     private ?string $discription = null;
-
     #[ORM\ManyToOne]
     private ?UserProfile $user_profile = null;
-
     public function getId(): ?int
     {
         return $this->id;
     }
-
     public function getUserProfile(): ?string
     {
         return $this->user_profile;
     }
-
     public function setUserProfile(?string $user_profile): self
     {
         $this->user_profile = $user_profile;
 
         return $this;
     }
-
     /**
      * @return string|null
      */
@@ -58,7 +46,6 @@ class Conge
     {
         return $this->start_day;
     }
-
     /**
      * @param string|null $start_day
      */
@@ -66,7 +53,6 @@ class Conge
     {
         $this->start_day = $start_day;
     }
-
     /**
      * @return string|null
      */
@@ -74,7 +60,6 @@ class Conge
     {
         return $this->end_day;
     }
-
     /**
      * @param string|null $end_day
      */
@@ -82,7 +67,6 @@ class Conge
     {
         $this->end_day = $end_day;
     }
-
     /**
      * @return string|null
      */
@@ -90,7 +74,6 @@ class Conge
     {
         return $this->type_conge;
     }
-
     /**
      * @param string|null $type_conge
      */
@@ -98,7 +81,6 @@ class Conge
     {
         $this->type_conge = $type_conge;
     }
-
     /**
      * @return string|null
      */
@@ -106,7 +88,6 @@ class Conge
     {
         return $this->cretification;
     }
-
     /**
      * @param string|null $cretification
      */
@@ -114,23 +95,6 @@ class Conge
     {
         $this->cretification = $cretification;
     }
-
-    /**
-     * @return array
-     */
-    public function getDayNumber(): array
-    {
-        return $this->day_number;
-    }
-
-    /**
-     * @param array $day_number
-     */
-    public function setDayNumber(array $day_number): void
-    {
-        $this->day_number = $day_number;
-    }
-
     /**
      * @return string|null
      */
@@ -138,7 +102,6 @@ class Conge
     {
         return $this->statuts;
     }
-
     /**
      * @param string|null $statuts
      */
@@ -146,7 +109,6 @@ class Conge
     {
         $this->statuts = $statuts;
     }
-
     /**
      * @return string|null
      */
@@ -154,7 +116,6 @@ class Conge
     {
         return $this->discription;
     }
-
     /**
      * @param string|null $discription
      */
@@ -162,5 +123,18 @@ class Conge
     {
         $this->discription = $discription;
     }
-
+    /**
+     * @return int|null
+     */
+    public function getNombredujour(): ?int
+    {
+        return $this->nombredujour;
+    }
+    /**
+     * @param int|null $nombredujour
+     */
+    public function setNombredujour(?int $nombredujour): void
+    {
+        $this->nombredujour = $nombredujour;
+    }
 }
