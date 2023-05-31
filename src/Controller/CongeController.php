@@ -29,6 +29,15 @@ class CongeController extends  AbstractController
         $form = $this->createForm(CongeFormType::class, $conge);
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
+            $conge->setStartDay($form->get('start_day')->getData());
+            $conge->setEndDay($form->get('end_day')->getData());
+            $conge->setTypeConge($form->get('type_conge')->getData());
+            $conge->setStatuts("en attente");
+            $conge->setDiscription($form->get('discription')->getData());
+            $conge->setNombredujour(3);
+            $entityManager->persist($conge);
+            $entityManager->flush();
+            return $this->redirectToRoute('congelist');
         }
         return $this->render('conge/demandeconge.html.twig',['registrationForm' => $form->createView(),]);
     }

@@ -18,8 +18,6 @@ class CongeFormType   extends  AbstractType
                 ->add('start_day')
                 ->add('end_day')
                 ->add('type_conge')
-                ->add('cretification')
-                ->add('statuts')
                 ->add('discription') ;
         }
     }
