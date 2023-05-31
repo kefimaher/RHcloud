@@ -15,7 +15,7 @@
     <div class="col-md-12 col-sm-12">
     <div class="x_panel">
     <div class="x_title">
-        <h2>Nouvelle Personne</h2>
+        <h2>Profile</h2>
         <ul class="nav navbar-right panel_toolbox">
         </ul>
         <div class="clearfix"></div>
@@ -23,6 +23,8 @@
     <div class="x_content">
         {{ form_start(registrationForm) }}
     <form class="" action="" method="post" novalidate>
+      <center>  <h6>Information Personnelle</h6>  </center>
+        <br>
     <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Grade</label>
         <div class="col-md-2 col-sm-3">
@@ -39,6 +41,7 @@
             <input type="text" class="form-control"{{ form_widget(registrationForm.status) }}
         </div>
     </div>
+        <center>  <h6>Information du travaille</h6></center>
     <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Date de naissance</label>
         <div class="col-md-6 col-sm-6">

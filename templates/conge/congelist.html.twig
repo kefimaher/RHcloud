@@ -31,6 +31,7 @@
                             <th class="column-title">Nombre des jour </th>
                             <th class="column-title">Statut</th>
                             <th class="column-title">Jour disponible</th>
+                            <th class="column-title no-link last"><span class="nobr">Modifier</span></th>
                             <th class="column-title no-link last"><span class="nobr">Accepter</span></th>
                             <th class="column-title no-link last"><span class="nobr">Refsue</span></th>
                             <th class="bulk-actions" colspan="7">
@@ -47,8 +48,9 @@
                                     <td class="">{{ conge.typeconge }}</td>
                                     <td class="">{{ conge.statuts }}</td>
                                     <td class="">{{ conge.nombredujour }}</td>
-                                    <td class="last"><a href=""><button type="button" class="btn btn-sm btn-round btn-success">Vlider</button></a></td>
-                                    <td class="last"><a href=""><button type="button" class="btn btn-sm btn-round btn-danger">Rejeter</button></a></td>
+                                    <td class="last"><a href=""><button type="button" class="btn btn-sm btn-round btn-warning">modifier</button></a></td>
+                                    <td class="last"><a href=""><button type="button" class="btn btn-sm btn-round btn-success">valider</button></a></td>
+                                    <td class="last"><a href=""><button type="button" class="btn btn-sm btn-round btn-danger">rejeter</button></a></td>
                                 </tr>
                             {% endfor %}
                         </tbody>
