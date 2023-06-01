@@ -41,48 +41,20 @@ class CongeController extends  AbstractController
         }
         return $this->render('conge/demandeconge.html.twig',['registrationForm' => $form->createView(),]);
     }
-
-/*
-    #[Route('/profilecomplet/{id}', name: 'profilecomplet')]
-    public function profile(ManagerRegistry $doctrine , $id,Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
+    #[Route('/supprime/{id}', name: 'supprime')]
+    public function profile(ManagerRegistry $doctrine , $id ,Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
-        $repository = $doctrine->getRepository(UserProfile::class);
-        $userprofile = $repository ->find($id);
-        $form = $this->createForm(ProfileFormType::class, $userprofile);
-        $form->handleRequest($request);
-        if ($form->isSubmitted()) {
-            $userprofile->setAdresse($form->get('adresse')->getData());
-            $userprofile->setContractType($form->get('contracttype')->getData());
-            $userprofile->setStatus($form->get('status')->getData());
-            $userprofile->setDateofbirth($form->get('dateofbirth')->getData());
-            $userprofile->setCountrycode($form->get('countrycode')->getData());
-            $userprofile->setMedicalfilenumber($form->get('medicalfilenumber')->getData());
-            $userprofile->setJoindate($form->get('joindate')->getData());
-            $userprofile->setCurrentrank($form->get('currentrank')->getData());
-            $userprofile->setTelephone($form->get('telephone')->getData());
-            $userprofile->setUpperhierarchy($form->get('upperhierarchy')->getData());
-            $entityManager->persist($userprofile);
-            $entityManager->flush();
-            return $this->redirectToRoute('dashbroad');
+
+        $repository = $doctrine->getRepository(Conge::class);
+        $conge = $repository ->findOneBy(array('id' => $id));
+        if ($conge != null)
+        {
+            $repository->remove($conge);
+            $repository->flush();
+            return $this->redirectToRoute('congelist');
         }
-        return $this->render('employees/profile.html.twig', ['registrationForm' => $form->createView(),]);
+        return $this->redirectToRoute('congelist');
     }
-
-
-
-
-
-
-   /*
-    #[Route('/mesdemande', name: 'mesdemande')]
-    public function mesdemandeAction(ManagerRegistry $doctrine ) : Response
-    {
-        return $this->render('conge/demandeconge.html.twig');
-    }
-   */
-
-
-
 }
 
 
