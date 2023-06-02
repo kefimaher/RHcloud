@@ -25,7 +25,6 @@
                 <table class="table table-striped jambo_table bulk_action">
                     <thead>
                     <tr class="headings">
-                        <th class="column-title">Numéro d'employeur </th>
                         <th class="column-title">Nom et Prénom</th>
                         <th class="column-title">E mail </th>
                         <th class="column-title">Fontion</th>
@@ -43,7 +42,6 @@
                     {% if users %}
                     {% for user in users %}
                     <tr class="even pointer">
-                        <td class="">{{ user.profile.employernumber }}</td>
                         <td class="">{{ user.lastname }} {{ user.firstname }}</td>
                         <td class="">{{ user.email  }}</td>
                         <td class="">{{ user.fonction }}</td>

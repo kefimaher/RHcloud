@@ -45,7 +45,13 @@
                                 <div class="field item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3  label-align">Poste</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input class="form-control" class='optional' type="text"  {{ form_widget(registrationForm.fonction) }}
+                                        <select class="form-control" {{ form_widget(registrationForm.fonction) }}
+                                            <option>Développeur Web Full Stack</option>
+                                            <option>Développeur Embarque</option>
+                                            <option>Développeur DevOps</option>
+                                            <option>Ingénieur Test et Validation</option>
+                                            <option>Autre</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="field item form-group">
