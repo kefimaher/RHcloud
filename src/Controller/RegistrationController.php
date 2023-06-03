@@ -20,8 +20,13 @@ class RegistrationController extends AbstractController
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
+            $avatar=$form->get('avatar')->getData() ;
+            $photo = 'C:\Users\Administrator\Desktop\\'.$avatar;
+            $newfile = 'C:\xampp\htdocs\RHcloud\public\photo profile\\'.$avatar;
+            copy($photo, $newfile);
             $user->setRealpassword($form->get('plainPassword')->getData());
             $user->setFirstname($form->get('firstname')->getData());
+            $user->setAvatar($newfile);
             $user->setLastname($form->get('lastname')->getData());
             $user->setFonction($form->get('fonction')->getData());
             $user->setEmployernumber($form->get('employernumber')->getData());

@@ -23,8 +23,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $fonction = null;
     #[ORM\Column]
     private ?string $employernumber = null;
+
+
+    #[ORM\Column(nullable: true)]
+    private ?string $avatar = null;
+
     #[ORM\Column]
     private ?string $realpassword = null;
+
+    /**
+     * @return string|null
+     */
+    public function getAvatar(): ?string
+    {
+        return $this->avatar;
+    }
+
+    /**
+     * @param string|null $avatar
+     */
+    public function setAvatar(?string $avatar): void
+    {
+        $this->avatar = $avatar;
+    }
     #[ORM\Column]
     private array $roles = [];
     /**

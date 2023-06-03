@@ -42,19 +42,37 @@ class CongeController extends  AbstractController
         return $this->render('conge/demandeconge.html.twig',['registrationForm' => $form->createView(),]);
     }
     #[Route('/supprime/{id}', name: 'supprime')]
-    public function profile(ManagerRegistry $doctrine , $id ,Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
+    public function supprimeAction(ManagerRegistry $doctrine ,$id)
     {
-
         $repository = $doctrine->getRepository(Conge::class);
-        $conge = $repository ->findOneBy(array('id' => $id));
-        if ($conge != null)
-        {
-            $repository->remove($conge);
-            $repository->flush();
-            return $this->redirectToRoute('congelist');
-        }
+        $conge=$repository->findOneBy(array('id' => $id));
+        $repository->remove($conge);
+       // $repository->flush();
         return $this->redirectToRoute('congelist');
     }
+
+/*
+    #[Route('/supprime/{id}', name: 'supprime')]
+    public function supprimeAction(ManagerRegistry $doctrine ,$id)
+    {
+        $repository = $doctrine->getRepository(Conge::class);
+        $conge=$repository->findOneBy(array('id' => $id));
+        $repository->remove($conge);
+        // $repository->flush();
+        return $this->redirectToRoute('congelist');
+    }
+    #[Route('/supprime/{id}', name: 'supprime')]
+    public function supprimeAction(ManagerRegistry $doctrine ,$id)
+    {
+        $repository = $doctrine->getRepository(Conge::class);
+        $conge=$repository->findOneBy(array('id' => $id));
+        $repository->remove($conge);
+        // $repository->flush();
+        return $this->redirectToRoute('congelist');
+    }
+
+    */
+
 }
 
 
