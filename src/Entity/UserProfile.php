@@ -36,6 +36,9 @@ class UserProfile
 
     #[ORM\Column(nullable: true)]
     private ?string $status = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?string $sex = null;
     #[ORM\Column(nullable: true)]
     private ?int $employer_number = null;
     #[ORM\Column(nullable: true)]
@@ -303,4 +306,21 @@ class UserProfile
     {
         $this->telephone = $telephone;
     }
+
+    /**
+     * @return string|null
+     */
+    public function getSex(): ?string
+    {
+        return $this->sex;
+    }
+
+    /**
+     * @param string|null $sex
+     */
+    public function setSex(?string $sex): void
+    {
+        $this->sex = $sex;
+    }
+
 }

@@ -38,6 +38,7 @@ class EmployeeController extends AbstractController
             $userprofile->setJoindate($form->get('joindate')->getData());
             $userprofile->setCurrentrank($form->get('currentrank')->getData());
             $userprofile->setTelephone($form->get('telephone')->getData());
+            $userprofile->setSex($form->get('sex')->getData());
             $userprofile->setUpperhierarchy($form->get('upperhierarchy')->getData());
             $entityManager->persist($userprofile);
             $entityManager->flush();

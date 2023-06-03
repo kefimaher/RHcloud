@@ -36,12 +36,23 @@
             <input class="form-control" type="date"  {{ form_widget(registrationForm.end_day) }}
         </div>
     </div>
+
     <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Type de congés</label>
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Type de conge</label>
         <div class="col-md-6 col-sm-6">
-            <input class="form-control"  {{ form_widget(registrationForm.type_conge) }}
+            <select class="form-control" {{ form_widget(registrationForm.type_conge) }}
+            <option>congé annuel</option>
+            <option>Le congé maladie</option>
+            <option>Le congé maternité</option>
+            <option>Le congé paternité</option>
+            <option>e congé parental d'éducation</option>
+            <option>Le congé de proche aidant</option>
+            <option>Le congé sans solde</option>
+            <option>Le congé sabbatique</option>
+            </select>
         </div>
     </div>
+
     <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Description</label>
         <div class="col-md-6 col-sm-6">

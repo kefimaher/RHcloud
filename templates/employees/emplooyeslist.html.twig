@@ -31,7 +31,7 @@
                         <th class="column-title">Statut</th>
                         <th class="column-title">date d'entrée</th>
                         <th class="column-title">Type de contrat de travail </th>
-                        <th class="column-title no-link last"><span class="nobr">Modifier un employeur</span>
+                        <th class="column-title no-link last"><span class="nobr">Complete ou Modifier le profile</span>
                         </th>
                         <th class="bulk-actions" colspan="7">
                             <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
@@ -41,14 +41,14 @@
                     <tbody>
                     {% if users %}
                     {% for user in users %}
-                    <tr class="even pointer">
+                    <tr class="even pointer" >
                         <td class="">{{ user.lastname }} {{ user.firstname }}</td>
                         <td class="">{{ user.email  }}</td>
                         <td class="">{{ user.fonction }}</td>
                         <td class="">{{ user.profile.status }}</td>
                         <td class="">{{ user.profile.joindate }}</td>
                         <td class="">{{ user.profile.contracttype }}</td>
-                        <td class="last"><a href="{{ path('profilecomplet',{'id':user.profile.id}) }}"><button type="button" class="btn btn-sm btn-round btn-success">Modifier</button></a></td>
+                        <td align="center" ><a href="{{ path('profilecomplet',{'id':user.profile.id}) }}"><button type="button" class="btn btn-sm btn-round btn-success">Éditer</button></a></td>
                     </tr>
                     {% endfor %}
                     {% endif %}

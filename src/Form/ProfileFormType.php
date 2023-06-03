@@ -19,7 +19,9 @@ class ProfileFormType extends  AbstractType
                 ->add('joindate')
                 ->add('currentrank')
                 ->add('telephone')
+                ->add('sex')
                 ->add('upperhierarchy') ;
+
         }
     }
         public function configureOptions(OptionsResolver $resolver): void

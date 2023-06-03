@@ -21,6 +21,9 @@ class Conge
     private ?int $nombredujour = null;
     #[ORM\Column(nullable: true)]
     private ?string $statuts = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?string $avatar = null;
     #[ORM\Column(nullable: true)]
     private ?string $discription = null;
     #[ORM\ManyToOne]
@@ -136,5 +139,21 @@ class Conge
     public function setNombredujour(?int $nombredujour): void
     {
         $this->nombredujour = $nombredujour;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getAvatar(): ?string
+    {
+        return $this->avatar;
+    }
+
+    /**
+     * @param string|null $avatar
+     */
+    public function setAvatar(?string $avatar): void
+    {
+        $this->avatar = $avatar;
     }
 }
