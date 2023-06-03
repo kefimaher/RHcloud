@@ -26,7 +26,7 @@ class RegistrationController extends AbstractController
             copy($photo, $newfile);
             $user->setRealpassword($form->get('plainPassword')->getData());
             $user->setFirstname($form->get('firstname')->getData());
-            $user->setAvatar($newfile);
+            $user->setAvatar($avatar);
             $user->setLastname($form->get('lastname')->getData());
             $user->setFonction($form->get('fonction')->getData());
             $user->setEmployernumber($form->get('employernumber')->getData());

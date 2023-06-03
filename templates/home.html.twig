@@ -46,11 +46,13 @@
                 <!-- menu profile quick info -->
                 <div class="profile clearfix">
                     <div class="profile_pic">
-                        <img src="{{asset('assets/production/images/img.jpg')}}" alt="..." class="img-circle profile_img">
+                        <img src="{{asset('photo profile/{{ app.user ? app.user.avatar : "avatar" }}')}}" alt="..." class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
                         <span>Bienvenu</span>
                         <h2> {{ app.user ? app.user.firstname : 'firstname' }} {{ app.user ? app.user.lastname : 'lastname' }}</h2>
+                        <h2>   {{ app.user ? app.user.avatar : 'avatar' }}</h2>
+
                     </div>
                 </div>
                 <!-- /menu profile quick info -->
