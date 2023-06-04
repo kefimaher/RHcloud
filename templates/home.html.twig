@@ -30,7 +30,6 @@
     <link href="{{asset('assets/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('assets/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('assets/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css')}}" rel="stylesheet">
-
     <link href=" {{asset('assets/vendors/fullcalendar/dist/fullcalendar.min.css')}}" rel="stylesheet">
     <link href="{{asset('assets/vendors/fullcalendar/dist/fullcalendar.print.css')}}" rel="stylesheet" media="print">
 </head>
@@ -46,13 +45,11 @@
                 <!-- menu profile quick info -->
                 <div class="profile clearfix">
                     <div class="profile_pic">
-                        <img src="{{asset('photo profile/{{ app.user ? app.user.avatar : "avatar" }}')}}" alt="..." class="img-circle profile_img">
+                        <img src="../photo profile/	{{ app.user ? app.user.avatar : 'avatar' }}" alt="..." class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
                         <span>Bienvenu</span>
                         <h2> {{ app.user ? app.user.firstname : 'firstname' }} {{ app.user ? app.user.lastname : 'lastname' }}</h2>
-                        <h2>   {{ app.user ? app.user.avatar : 'avatar' }}</h2>
-
                     </div>
                 </div>
                 <!-- /menu profile quick info -->
@@ -60,7 +57,7 @@
                 <!-- sidebar menu -->
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                     <div class="menu_section">
-                        <h3> {{ app.user ? app.user.email : 'email' }} </h3>
+
                         <ul class="nav side-menu">
                             <li><a href="{{ path('dashbroad') }}" ><i class="fa fa-home"></i>Tableau de bord<span class="fa fa-chevron"></span></a></li>
                             <li><a><i class="fa fa-edit"></i> Les employés <span class="fa fa-chevron-down"></span></a>
@@ -97,7 +94,7 @@
                     <ul class=" navbar-right">
                         <li class="nav-item dropdown open" style="padding-left: 15px;">
                             <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                                <img src="{{asset('assets/production/images/img.jpg')}}" alt="">{{ app.user ? app.user.firstname : 'firstname' }} {{ app.user ? app.user.lastname : 'lastname' }}
+                                <img src="../photo profile/	{{ app.user ? app.user.avatar : 'avatar' }}" alt="">{{ app.user ? app.user.firstname : 'firstname' }} {{ app.user ? app.user.lastname : 'lastname' }}
                             </a>
                             <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item"  href="{{ path('app_logout') }}"><i class="fa fa-sign-out pull-right"></i>Déconnexion</a>
