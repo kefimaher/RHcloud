@@ -30,6 +30,7 @@
                                         <th>Nom et Prénom</th>
                                         <th>E mail</th>
                                         <th>Fontion</th>
+                                        <th>Role</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -39,6 +40,7 @@
                                         <td>{{ user.firstname }} {{ user.lastname }}</td>
                                         <td>{{ user.email  }}</td>
                                         <td>{{ user.fonction  }}</td>
+                                        <td>{% if user.fonction  == 'Employé RH' %} ADMIN {% else %}USER{% endif %}</td>
                                     </tr>
                                     {% endfor %}
                                     </tbody>

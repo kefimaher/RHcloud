@@ -21,15 +21,10 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             $avatar=$form->get('avatar')->getData() ;
-
-
             if ($avatar==NULL)
             {
-                var_dump($avatar);
+               // metter un image  comme avatr par deafult
             }
-            else
-                echo ('maher') ;
-            die();
             $photo = 'C:\Users\Administrator\Desktop\\'.$avatar;
             $newfile = 'C:\xampp\htdocs\RHcloud\public\photo profile\\'.$avatar;
             copy($photo, $newfile);
@@ -37,21 +32,16 @@ class RegistrationController extends AbstractController
             $user->setFirstname($form->get('firstname')->getData());
             $user->setAvatar($avatar);
             $user->setLastname($form->get('lastname')->getData());
-
-
-              $fonction=$form->get('fonction')->getData() ;
-              echo $fonction ;
-              die();
-
-
-            if($fonction=="Responsable RH"){
-                $user->addRole("ROLE_ADMIN");
+            $fonction=$form->get('fonction')->getData() ;
+            if($fonction=="Employé RH"){
+                echo ('maher') ;
+                $user->setRoles(array('ROLE_ADMIN'));
             }
             else{
-                $user->addRole("ROLE_USER");
+                echo ('maher') ;
+                $user->setRoles(array('ROLE_USER'));
             }
             $user->setFonction($fonction);
-
             $user->setFonction($form->get('fonction')->getData());
             $user->setEmployernumber($form->get('employernumber')->getData());
             $user->setEmail($form->get('email')->getData());
