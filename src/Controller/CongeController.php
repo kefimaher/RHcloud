@@ -47,20 +47,32 @@ class CongeController extends  AbstractController
         $repository = $doctrine->getRepository(Conge::class);
         $conge=$repository->findOneBy(array('id' => $id));
         $repository->remove($conge);
-       // $repository->flush();
+        $repository->flush();
         return $this->redirectToRoute('congelist');
     }
 
-/*
-    #[Route('/supprime/{id}', name: 'supprime')]
-    public function supprimeAction(ManagerRegistry $doctrine ,$id)
+
+    #[Route('/accepter/{id}/{nbj}', name: 'accepter')]
+    public function accepterAction(ManagerRegistry $doctrine ,$id)
     {
         $repository = $doctrine->getRepository(Conge::class);
         $conge=$repository->findOneBy(array('id' => $id));
-        $repository->remove($conge);
-        // $repository->flush();
+
+        if ($conge) {
+            $type = $conge->getType();
+            if ($type == 'maladie') {
+                //  la soustraction depuis les jours maladie
+            } else {
+                //  la soustraction depuis les jours annuelle
+            }
+
+            $conge->setStatuts("accepter");
+            $repository->persist($conge);
+            $repository->flush();
+            }
         return $this->redirectToRoute('congelist');
     }
+    /*
     #[Route('/supprime/{id}', name: 'supprime')]
     public function supprimeAction(ManagerRegistry $doctrine ,$id)
     {

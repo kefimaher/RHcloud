@@ -48,7 +48,7 @@
                                     <td class="">{{ conge.typeconge }}</td>
                                     <td class="">{{ conge.statuts }}</td>
                                     <td class="">{{ conge.nombredujour }}</td>
-                                    <td class="last"><a href=""><button type="button" class="btn btn-sm btn-round btn-success">valider</button></a></td>
+                                    <td class="last"><a href="{{ path('supprime',{'id':conge.id,'nbj':conge.nombredujour}) }}"><button type="button" class="btn btn-sm btn-round btn-success">valider</button></a></td>
                                     <td class="last"><a href=""><button type="button" class="btn btn-sm btn-round btn-warning">regeter</button></a></td>
                                     <td class="last"><a href="{{ path('supprime',{'id':conge.id}) }}"><button type="button" class="btn btn-sm btn-round btn-danger">supprimer</button></a></td>
                                 </tr>
