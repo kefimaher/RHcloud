@@ -47,7 +47,7 @@ class CongeController extends  AbstractController
         $repository = $doctrine->getRepository(Conge::class);
         $conge=$repository->findOneBy(array('id' => $id));
         $repository->remove($conge);
-       // $repository->flush();
+        $repository->flush();
         return $this->redirectToRoute('congelist');
     }
 
