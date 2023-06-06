@@ -41,11 +41,11 @@
         <label class="col-form-label col-md-3 col-sm-3  label-align">Type de conge</label>
         <div class="col-md-6 col-sm-6">
             <select class="form-control" {{ form_widget(registrationForm.type_conge) }}
-            <option>congé annuel</option>
+            <option>Congé annuel</option>
             <option>Le congé maladie</option>
             <option>Le congé maternité</option>
             <option>Le congé paternité</option>
-            <option>e congé parental d'éducation</option>
+            <option>Le congé parental d'éducation</option>
             <option>Le congé de proche aidant</option>
             <option>Le congé sans solde</option>
             <option>Le congé sabbatique</option>
@@ -57,6 +57,12 @@
         <label class="col-form-label col-md-3 col-sm-3  label-align">Description</label>
         <div class="col-md-6 col-sm-6">
             <input class="form-control" type="text"  {{ form_widget(registrationForm.discription) }}
+        </div>
+    </div>
+    <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Description</label>
+        <div class="col-md-6 col-sm-6">
+            <input class="form-control" type="text" {{ app.user ? app.user.employernumber : 'employernumber' }}
         </div>
     </div>
     <button type="submit" class="btn btn-success">Register</button>

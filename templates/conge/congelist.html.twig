@@ -4,7 +4,7 @@
     <div class="col-md-12 col-sm-12  ">
         <div class="x_panel">
             <div class="x_title">
-                <h2>List Des Employés <small> </small></h2>
+                <h2>List Des Conge en Attente <small> </small></h2>
                 <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                     </li>
@@ -40,7 +40,9 @@
                         </tr>
                         </thead>
                         <tbody>
+                        {% if conges %}
                             {% for conge in conges %}
+                                {% if  conge.statuts == 'en attente' %}
                                 <tr class="even pointer">
                                     <td class="">{{ conge.id }}</td>
                                     <td class="">{{ conge.startday }}</td>
@@ -52,7 +54,9 @@
                                     <td class="last"><a href=""><button type="button" class="btn btn-sm btn-round btn-warning">regeter</button></a></td>
                                     <td class="last"><a href="{{ path('supprime',{'id':conge.id}) }}"><button type="button" class="btn btn-sm btn-round btn-danger">supprimer</button></a></td>
                                 </tr>
+                                {% endif %}
                             {% endfor %}
+                        {% endif %}
                         </tbody>
                     </table>
                 </div>
