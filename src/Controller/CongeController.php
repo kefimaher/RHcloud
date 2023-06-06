@@ -29,7 +29,7 @@ class CongeController extends  AbstractController
         // recupure les list des conge statut accpeter ou refuse
         $conge = $doctrine->getRepository(Conge::class);
         $listconge=$conge->findAll();
-        return $this->render('conge/historique.html.twig',array('conges' => $listconge));
+        return $this->render('conge/historiqueconge.html.twig',array('conges' => $listconge));
     }
 
 
@@ -68,14 +68,13 @@ class CongeController extends  AbstractController
     #[Route('/accepter/{id}/{nbj}', name: 'accepter')]
     public function accepterAction(ManagerRegistry $doctrine ,$id , $nbj)
     {
+        $conge = new Conge() ;
         // recupure  l'employer qui faire la demande
         $repository = $doctrine->getRepository(Conge::class);
-        $conge=$repository->findOneBy(array('id' => $id));
-        echo ($nbj) ;
-        // die();
+        $conge=$repository->find($id);
         if ($conge) {
-            $type = $conge->getType();
-            if ($type == 'maladie') {
+            $type=$conge->getTypeConge();
+            if ($type == 'Le congé maladie') {
                 //  la soustraction depuis les jours maladie
             }
             else
