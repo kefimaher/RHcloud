@@ -7,6 +7,7 @@ use App\Form\ProfileFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -65,30 +66,17 @@ class CongeController extends  AbstractController
 
 
 
-
-
-
-
-
     #[Route('/supprime/{id}', name: 'supprime')]
-    public function supprimeAction(Conge $conge = null , ManagerRegistry $doctrine, $id):RedirectResponce
+    public function supprimeAction(Conge $conge = null , ManagerRegistry $doctrine, $id):RedirectResponse
     {
+        $conge = $doctrine->getRepository(Conge::class)->findOneBy(array('id' => $id));
         if ($conge)
         {
             $manager= $doctrine ->getManager();
             $manager->remove($conge);
             $manager->flush();
-            $this->addFlash('success', "la conge a ete supprime avec succes ");
-        }else
-        {
-            $this->addFlash('erreur', "la conge n'existe pas ");
+            return $this->redirectToRoute('congelist');
         }
-        /*
-        $repository = $doctrine->getRepository(Conge::class);
-        $conge=$repository->findOneBy(array('id' => $id));
-        $repository->remove($conge);
-        $repository->flush();
-        */
         return $this->redirectToRoute('congelist');
     }
 
