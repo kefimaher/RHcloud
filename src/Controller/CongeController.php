@@ -36,6 +36,12 @@ class CongeController extends  AbstractController
     #[Route('/demandeconge', name: 'demandeconge')]
     public function demandecongeAction(ManagerRegistry $doctrine ,Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
+        session_start();
+        $value=$_SESSION["user"] ;
+        echo $_SESSION["user"];
+        echo ('<br>');
+        echo $value ;
+        die();
         $repository = $doctrine->getRepository(Conge::class);
         $conge = new Conge() ;
         $form = $this->createForm(CongeFormType::class, $conge);
