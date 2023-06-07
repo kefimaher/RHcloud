@@ -62,15 +62,44 @@ class CongeController extends  AbstractController
         }
         return $this->render('conge/demandeconge.html.twig',['registrationForm' => $form->createView(),]);
     }
+
+
+
+
+
+
+
+
     #[Route('/supprime/{id}', name: 'supprime')]
-    public function supprimeAction(ManagerRegistry $doctrine ,$id)
+    public function supprimeAction(Conge $conge = null , ManagerRegistry $doctrine, $id):RedirectResponce
     {
+        if ($conge)
+        {
+            $manager= $doctrine ->getManager();
+            $manager->remove($conge);
+            $manager->flush();
+            $this->addFlash('success', "la conge a ete supprime avec succes ");
+        }else
+        {
+            $this->addFlash('erreur', "la conge n'existe pas ");
+        }
+        /*
         $repository = $doctrine->getRepository(Conge::class);
         $conge=$repository->findOneBy(array('id' => $id));
         $repository->remove($conge);
         $repository->flush();
+        */
         return $this->redirectToRoute('congelist');
     }
+
+
+
+
+
+
+
+
+
     #[Route('/accepter/{id}/{nbj}', name: 'accepter')]
     public function accepterAction(ManagerRegistry $doctrine ,$id , $nbj)
     {
