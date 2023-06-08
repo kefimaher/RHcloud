@@ -23,6 +23,7 @@ class CongeController extends  AbstractController
         $listconge=$conge->findAll();
         return $this->render('conge/congelist.html.twig',array('conges' => $listconge));
     }
+
     #[Route('/historique', name: 'historique')]
     public function historiqueAction(ManagerRegistry $doctrine ) : Response
     {
@@ -31,6 +32,8 @@ class CongeController extends  AbstractController
         $listconge=$conge->findAll();
         return $this->render('conge/historiqueconge.html.twig',array('conges' => $listconge));
     }
+
+
     #[Route('/demandeconge', name: 'demandeconge')]
     public function demandecongeAction(ManagerRegistry $doctrine ,Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
@@ -45,15 +48,6 @@ class CongeController extends  AbstractController
         $form = $this->createForm(CongeFormType::class, $conge);
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
-            $cretification=$form->get('cretification')->getData() ;
-            if ($cretification==NULL)
-            {
-                $newfile = "ajouter voter certificate stp " ;
-            }else {
-                $photo = 'C:\Users\Administrator\Desktop\\'.$cretification;
-                $newfile = 'C:\xampp\htdocs\RHcloud\public\photo profile\\'.$cretification;
-            }
-            copy($photo, $newfile);
             $startday=$form->get('start_day')->getData() ;
             $endday= $form->get('end_day')->getData() ;
             /* calculer la deffrence enter les deux date */
@@ -63,13 +57,15 @@ class CongeController extends  AbstractController
             $conge->setStatuts("en attente");
             $conge->setDiscription($form->get('discription')->getData());
             $conge->setNombredujour(3);
-            $conge->setCretification($newfile);
             $entityManager->persist($conge);
             $entityManager->flush();
             return $this->redirectToRoute('congelist');
         }
         return $this->render('conge/demandeconge.html.twig',['registrationForm' => $form->createView(),]);
     }
+
+
+
     #[Route('/supprime/{id}', name: 'supprime')]
     public function supprimeAction(Conge $conge = null , ManagerRegistry $doctrine, $id):RedirectResponse
     {
@@ -83,41 +79,46 @@ class CongeController extends  AbstractController
         }
         return $this->redirectToRoute('congelist');
     }
-<<<<<<< HEAD
 
     #[Route('/accepter/{id}/{nbj}', name: 'accepter')]
     public function accepterAction(ManagerRegistry $doctrine ,$id , $nbj)
-=======
-    #[Route('/accepter/{id}', name: 'accepter')]
-    public function accepterAction(Conge $conge = null , ManagerRegistry $doctrine, $id):RedirectResponse
->>>>>>> 6efd7b66e3529461f22a24028b97b859add7e6cd
     {
-        $conge = $doctrine->getRepository(Conge::class)->findOneBy(array('id' => $id));
-        if ($conge)
-        {
+        $conge = new Conge() ;
+        // recupure  l'employer qui faire la demande
+        $repository = $doctrine->getRepository(Conge::class);
+        $conge=$repository->find($id);
+        if ($conge) {
+            $type=$conge->getTypeConge();
+            if ($type == 'Le congé maladie') {
+                //  la soustraction depuis les jours maladie
+            }
+            else
+            {
+                //  la soustraction depuis les jours annuelle
+            }
             $conge->setStatuts("accepter");
-            // recupure le preson qui a conncter
-            $manager= $doctrine ->getManager();
-            $manager->persiste($conge);
-            $manager->flush();
-            return $this->redirectToRoute('congelist');
-        }
+            $repository->persist($conge);
+            $repository->flush();
+            }
         return $this->redirectToRoute('congelist');
     }
-    #[Route('/refuse/{id}', name: 'refuse')]
-    public function refuseAction(Conge $conge = null , ManagerRegistry $doctrine, $id):RedirectResponse
+
+        #[Route('/refuse/{id}', name: 'refuse')]
+    public function refuseAction(ManagerRegistry $doctrine ,$id)
     {
-        $conge = $doctrine->getRepository(Conge::class)->findOneBy(array('id' => $id));
+        $repository = $doctrine->getRepository(Conge::class);
+        $conge=$repository->findOneBy(array('id' => $id));
         if ($conge)
         {
-            $conge->setStatuts("refuse");
-            $manager= $doctrine ->getManager();
-            $manager->persiste($conge);
-            $manager->flush();
-            return $this->redirectToRoute('congelist');
+            $conge->setStatuts("refuser");
+            $repository->persist($conge);
+            $repository->flush();
         }
         return $this->redirectToRoute('congelist');
     }
+
+
+
 }
 
 

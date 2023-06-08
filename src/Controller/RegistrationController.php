@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 class RegistrationController extends AbstractController
 {
     #[Route('/addemployee', name: 'addemployee')]
@@ -22,33 +23,22 @@ class RegistrationController extends AbstractController
             $avatar=$form->get('avatar')->getData() ;
             if ($avatar==NULL)
             {
-                $newfile = 'C:\xampp\htdocs\RHcloud\public\photo profile\user.png';
-<<<<<<< HEAD
+               // metter un image  comme avatr par deafult
             }
-            else
-            {
-                $photo = 'C:\Users\Administrator\Desktop\\'.$avatar;
-                $newfile = 'C:\xampp\htdocs\RHcloud\public\photo profile\\'.$avatar;
-                copy($photo, $newfile);
-            }
-            $user->setAvatar($newfile);
-=======
-            }else {
-                $photo = 'C:\Users\Administrator\Desktop\\'.$avatar;
-                $newfile = 'C:\xampp\htdocs\RHcloud\public\photo profile\\'.$avatar;
-            }
+            $photo = 'C:\Users\Administrator\Desktop\\'.$avatar;
+            $newfile = 'C:\xampp\htdocs\RHcloud\public\photo profile\\'.$avatar;
             copy($photo, $newfile);
->>>>>>> 6efd7b66e3529461f22a24028b97b859add7e6cd
             $user->setRealpassword($form->get('plainPassword')->getData());
             $user->setFirstname($form->get('firstname')->getData());
             $user->setAvatar($avatar);
             $user->setLastname($form->get('lastname')->getData());
             $fonction=$form->get('fonction')->getData() ;
             if($fonction=="Employé RH"){
+                echo ('maher') ;
                 $user->setRoles(array('ROLE_ADMIN'));
             }
-            else
-            {
+            else{
+                echo ('maher') ;
                 $user->setRoles(array('ROLE_USER'));
             }
             $user->setFonction($fonction);
