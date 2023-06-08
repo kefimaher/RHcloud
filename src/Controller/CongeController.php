@@ -31,8 +31,6 @@ class CongeController extends  AbstractController
         $listconge=$conge->findAll();
         return $this->render('conge/historiqueconge.html.twig',array('conges' => $listconge));
     }
-
-
     #[Route('/demandeconge', name: 'demandeconge')]
     public function demandecongeAction(ManagerRegistry $doctrine ,Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
@@ -62,9 +60,6 @@ class CongeController extends  AbstractController
         }
         return $this->render('conge/demandeconge.html.twig',['registrationForm' => $form->createView(),]);
     }
-
-
-
     #[Route('/supprime/{id}', name: 'supprime')]
     public function supprimeAction(Conge $conge = null , ManagerRegistry $doctrine, $id):RedirectResponse
     {
@@ -78,7 +73,6 @@ class CongeController extends  AbstractController
         }
         return $this->redirectToRoute('congelist');
     }
-
     #[Route('/accepter/{id}', name: 'accepter')]
     public function accepterAction(Conge $conge = null , ManagerRegistry $doctrine, $id):RedirectResponse
     {
@@ -94,7 +88,6 @@ class CongeController extends  AbstractController
         }
         return $this->redirectToRoute('congelist');
     }
-
     #[Route('/refuse/{id}', name: 'refuse')]
     public function refuseAction(Conge $conge = null , ManagerRegistry $doctrine, $id):RedirectResponse
     {
@@ -109,9 +102,6 @@ class CongeController extends  AbstractController
         }
         return $this->redirectToRoute('congelist');
     }
-
-
-
 }
 
 

@@ -23,10 +23,11 @@ class RegistrationController extends AbstractController
             $avatar=$form->get('avatar')->getData() ;
             if ($avatar==NULL)
             {
-               // metter un image  comme avatr par deafult
+                $newfile = 'C:\xampp\htdocs\RHcloud\public\photo profile\user.png';
+            }else {
+                $photo = 'C:\Users\Administrator\Desktop\\'.$avatar;
+                $newfile = 'C:\xampp\htdocs\RHcloud\public\photo profile\\'.$avatar;
             }
-            $photo = 'C:\Users\Administrator\Desktop\\'.$avatar;
-            $newfile = 'C:\xampp\htdocs\RHcloud\public\photo profile\\'.$avatar;
             copy($photo, $newfile);
             $user->setRealpassword($form->get('plainPassword')->getData());
             $user->setFirstname($form->get('firstname')->getData());
