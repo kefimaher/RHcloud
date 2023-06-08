@@ -23,7 +23,6 @@ class CongeController extends  AbstractController
         $listconge=$conge->findAll();
         return $this->render('conge/congelist.html.twig',array('conges' => $listconge));
     }
-
     #[Route('/historique', name: 'historique')]
     public function historiqueAction(ManagerRegistry $doctrine ) : Response
     {
@@ -80,47 +79,33 @@ class CongeController extends  AbstractController
         return $this->redirectToRoute('congelist');
     }
 
-
-
-
-
-
-
-
-
-    #[Route('/accepter/{id}/{nbj}', name: 'accepter')]
-    public function accepterAction(ManagerRegistry $doctrine ,$id , $nbj)
+    #[Route('/accepter/{id}', name: 'accepter')]
+    public function accepterAction(Conge $conge = null , ManagerRegistry $doctrine, $id):RedirectResponse
     {
-        $conge = new Conge() ;
-        // recupure  l'employer qui faire la demande
-        $repository = $doctrine->getRepository(Conge::class);
-        $conge=$repository->find($id);
-        if ($conge) {
-            $type=$conge->getTypeConge();
-            if ($type == 'Le congé maladie') {
-                //  la soustraction depuis les jours maladie
-            }
-            else
-            {
-                //  la soustraction depuis les jours annuelle
-            }
+        $conge = $doctrine->getRepository(Conge::class)->findOneBy(array('id' => $id));
+        if ($conge)
+        {
             $conge->setStatuts("accepter");
-            $repository->persist($conge);
-            $repository->flush();
-            }
+            // recupure le preson qui a conncter
+            $manager= $doctrine ->getManager();
+            $manager->persiste($conge);
+            $manager->flush();
+            return $this->redirectToRoute('congelist');
+        }
         return $this->redirectToRoute('congelist');
     }
 
-        #[Route('/refuse/{id}', name: 'refuse')]
-    public function refuseAction(ManagerRegistry $doctrine ,$id)
+    #[Route('/refuse/{id}', name: 'refuse')]
+    public function refuseAction(Conge $conge = null , ManagerRegistry $doctrine, $id):RedirectResponse
     {
-        $repository = $doctrine->getRepository(Conge::class);
-        $conge=$repository->findOneBy(array('id' => $id));
+        $conge = $doctrine->getRepository(Conge::class)->findOneBy(array('id' => $id));
         if ($conge)
         {
-            $conge->setStatuts("refuser");
-            $repository->persist($conge);
-            $repository->flush();
+            $conge->setStatuts("refuse");
+            $manager= $doctrine ->getManager();
+            $manager->persiste($conge);
+            $manager->flush();
+            return $this->redirectToRoute('congelist');
         }
         return $this->redirectToRoute('congelist');
     }
