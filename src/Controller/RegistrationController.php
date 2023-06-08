@@ -23,6 +23,7 @@ class RegistrationController extends AbstractController
             if ($avatar==NULL)
             {
                 $newfile = 'C:\xampp\htdocs\RHcloud\public\photo profile\user.png';
+<<<<<<< HEAD
             }
             else
             {
@@ -31,6 +32,13 @@ class RegistrationController extends AbstractController
                 copy($photo, $newfile);
             }
             $user->setAvatar($newfile);
+=======
+            }else {
+                $photo = 'C:\Users\Administrator\Desktop\\'.$avatar;
+                $newfile = 'C:\xampp\htdocs\RHcloud\public\photo profile\\'.$avatar;
+            }
+            copy($photo, $newfile);
+>>>>>>> 6efd7b66e3529461f22a24028b97b859add7e6cd
             $user->setRealpassword($form->get('plainPassword')->getData());
             $user->setFirstname($form->get('firstname')->getData());
             $user->setAvatar($avatar);
