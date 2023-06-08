@@ -45,6 +45,15 @@ class CongeController extends  AbstractController
         $form = $this->createForm(CongeFormType::class, $conge);
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
+            $cretification=$form->get('cretification')->getData() ;
+            if ($cretification==NULL)
+            {
+                $newfile = "ajouter voter certificate stp " ;
+            }else {
+                $photo = 'C:\Users\Administrator\Desktop\\'.$cretification;
+                $newfile = 'C:\xampp\htdocs\RHcloud\public\photo profile\\'.$cretification;
+            }
+            copy($photo, $newfile);
             $startday=$form->get('start_day')->getData() ;
             $endday= $form->get('end_day')->getData() ;
             /* calculer la deffrence enter les deux date */
@@ -54,6 +63,7 @@ class CongeController extends  AbstractController
             $conge->setStatuts("en attente");
             $conge->setDiscription($form->get('discription')->getData());
             $conge->setNombredujour(3);
+            $conge->setCretification($newfile);
             $entityManager->persist($conge);
             $entityManager->flush();
             return $this->redirectToRoute('congelist');

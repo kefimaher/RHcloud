@@ -72,10 +72,11 @@
         </div>
     </div>
     <div class="field item form-group">
-        <label class="col-form-label col-md-3 col-sm-3  label-align">Description</label>
+        <label class="col-form-label col-md-3 col-sm-3  label-align">avatar</label>
         <div class="col-md-6 col-sm-6">
-            <input class="form-control" type="text">
+            <input type="file" data-role="magic-overlay" data-target="#pictureBtn"  data-edit="insertImage" {{ form_widget(registrationForm.cretification) }}
         </div>
+
     </div>
     <button type="submit" class="btn btn-success">Register</button>
     {{ form_end(registrationForm) }}
