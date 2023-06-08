@@ -80,14 +80,6 @@ class CongeController extends  AbstractController
         return $this->redirectToRoute('congelist');
     }
 
-
-
-
-
-
-
-
-
     #[Route('/accepter/{id}/{nbj}', name: 'accepter')]
     public function accepterAction(ManagerRegistry $doctrine ,$id , $nbj)
     {
