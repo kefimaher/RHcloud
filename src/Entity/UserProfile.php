@@ -30,7 +30,7 @@ class UserProfile
     #[ORM\Column(nullable: true)]
     private ?int $sickday = null;
     #[ORM\Column(nullable: true)]
-    private ?string $dayout = null;
+    private ?int $dayout = null;
     #[ORM\Column(nullable: true)]
     private ?string $contract_type = null;
 
@@ -217,20 +217,23 @@ class UserProfile
     {
         $this->sickday = $sickday;
     }
+
     /**
-     * @return string|null
+     * @return int|null
      */
-    public function getDayout(): ?string
+    public function getDayout(): ?int
     {
         return $this->dayout;
     }
+
     /**
-     * @param string|null $dayout
+     * @param int|null $dayout
      */
-    public function setDayout(?string $dayout): void
+    public function setDayout(?int $dayout): void
     {
         $this->dayout = $dayout;
     }
+
     /**
      * @return string|null
      */

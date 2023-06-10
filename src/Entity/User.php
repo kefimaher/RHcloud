@@ -22,12 +22,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $fonction = null;
     #[ORM\Column]
-    private ?string $employernumber = null;
-
-
+    private ?int $employernumber = null;
     #[ORM\Column(nullable: true)]
     private ?string $avatar = null;
-
     #[ORM\Column]
     private ?string $realpassword = null;
 
@@ -179,18 +176,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->profile = $profile;
         return $this;
     }
+
     /**
-     * @return string|null
+     * @return int|null
      */
-    public function getEmployernumber(): ?string
+    public function getEmployernumber(): ?int
     {
         return $this->employernumber;
     }
+
     /**
-     * @param string|null $employernumber
+     * @param int|null $employernumber
      */
-    public function setEmployernumber(?string $employernumber): void
+    public function setEmployernumber(?int $employernumber): void
     {
         $this->employernumber = $employernumber;
     }
+
+
 }

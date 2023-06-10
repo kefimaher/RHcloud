@@ -21,24 +21,25 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             $avatar=$form->get('avatar')->getData() ;
+            $image = $avatar ;
             if ($avatar==NULL)
             {
-               // metter un image  comme avatr par deafult
+                $image="imge not found ";
+            }else {
+                // line just pour faire copier image de bureau ver votre dossier
+                $photo = 'C:\Users\Administrator\Desktop\\'.$avatar;
+                $newfile = 'C:\xampp\htdocs\RHcloud\public\photo profile\\'.$avatar;
+                copy($photo, $newfile);
             }
-            $photo = 'C:\Users\Administrator\Desktop\\'.$avatar;
-            $newfile = 'C:\xampp\htdocs\RHcloud\public\photo profile\\'.$avatar;
-            copy($photo, $newfile);
             $user->setRealpassword($form->get('plainPassword')->getData());
             $user->setFirstname($form->get('firstname')->getData());
-            $user->setAvatar($avatar);
+            $user->setAvatar($image);
             $user->setLastname($form->get('lastname')->getData());
             $fonction=$form->get('fonction')->getData() ;
             if($fonction=="Employé RH"){
-                echo ('maher') ;
                 $user->setRoles(array('ROLE_ADMIN'));
             }
             else{
-                echo ('maher') ;
                 $user->setRoles(array('ROLE_USER'));
             }
             $user->setFonction($fonction);

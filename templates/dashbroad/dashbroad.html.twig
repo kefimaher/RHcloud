@@ -31,6 +31,7 @@
                                         <th>E mail</th>
                                         <th>Fontion</th>
                                         <th>Role</th>
+                                        <th>User Avatar</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -41,6 +42,7 @@
                                         <td>{{ user.email  }}</td>
                                         <td>{{ user.fonction  }}</td>
                                         <td>{% if user.fonction  == 'Employé RH' %} ADMIN {% else %}USER{% endif %}</td>
+                                        <td><img src="../photo profile/	{{ user.avatar }}"></td>
                                     </tr>
                                     {% endfor %}
                                     </tbody>
