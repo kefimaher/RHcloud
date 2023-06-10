@@ -37,11 +37,14 @@ class CongeController extends  AbstractController
     #[Route('/demandeconge', name: 'demandeconge')]
     public function demandecongeAction(ManagerRegistry $doctrine ,Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
-        session_start();
-        $value=$_SESSION["user"] ;
-        echo $_SESSION["user"];
+
+        $username = $this->getUser()->getEmail();
+
+    //    session_start();
+    //    $value=$_SESSION["user"] ;
+   //     echo $_SESSION["user"];
         echo ('<br>');
-        echo $value ;
+        echo $username ;
         die();
         $repository = $doctrine->getRepository(Conge::class);
         $conge = new Conge() ;
@@ -79,7 +82,6 @@ class CongeController extends  AbstractController
         }
         return $this->redirectToRoute('congelist');
     }
-
     #[Route('/accepter/{id}/{nbj}', name: 'accepter')]
     public function accepterAction(ManagerRegistry $doctrine ,$id , $nbj)
     {
