@@ -1,0 +1,41 @@
+{% extends 'home.html.twig' %}
+{% block content %}
+    {{ form_start(registrationForm) }}
+    <br> <br> <br> <br>
+    <div class="" role="main">
+    <div class="">
+    <div class="page-title">
+        <div class="title_right">
+            <div class="col-md-5 col-sm-5 form-group pull-right top_search">
+                <div class="input-group">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+    <div class="col-md-12 col-sm-12">
+    <div class="x_panel">
+    <div class="x_title">
+        <h2>Ajoute un jour férié</h2>
+        <ul class="nav navbar-right panel_toolbox">
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+    <form class="" action="" method="post" novalidate>
+    <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Date</label>
+        <div class="col-md-6 col-sm-6">
+            <input type="date" class="form-control" {{ form_widget(registrationForm.day) }}
+        </div>
+    </div>
+    <div class="field item form-group">
+        <label class="col-form-label col-md-3 col-sm-3  label-align">Description</label>
+        <div class="col-md-6 col-sm-6">
+            <input type="text" class="form-control" {{ form_widget(registrationForm.discription) }}
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success">Ajouter</button>
+    {{ form_end(registrationForm) }}
+{% endblock %}

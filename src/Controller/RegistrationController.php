@@ -58,8 +58,6 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
             return $this->redirectToRoute('dashbroad');
         }
-        return $this->render('employees/addemployee.html.twig', [
-            'registrationForm' => $form->createView(),
-        ]);
+        return $this->render('employees/addemployee.html.twig', ['registrationForm' => $form->createView(),]);
     }
 }
