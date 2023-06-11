@@ -24,7 +24,7 @@ class RegistrationController extends AbstractController
             $image = $avatar ;
             if ($avatar==NULL)
             {
-                $image='guest.jpeg';
+                $image='guest.png';
             }else {
                // copier votre image de  de bureau ver votre dossier
                 $photo = 'C:\Users\Administrator\Desktop\\'.$avatar;

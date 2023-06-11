@@ -75,25 +75,42 @@ class CongeController extends  AbstractController
         }
         return $this->redirectToRoute('congelist');
     }
-    #[Route('/accepter/{id}/{nbj}', name: 'accepter')]
+    #[Route('/accepter/{id}', name: 'accepter')]
     public function accepterAction(Conge $conge = null , ManagerRegistry $doctrine, $id):RedirectResponse
     {
            $conge = $doctrine->getRepository(Conge::class)->findOneBy(array('id' => $id));
-           $userid = $conge->getUserProfile->getId();
-           echo $userid ;
-           die();
+           $userid = $conge->getUserProfile()->getId();
+           $userprofile = $doctrine->getRepository(UserProfile::class)->findOneBy(array('id' => $userid));
            $type=$conge->getTypeConge();
+           $nbj= $conge->getNombredujour();
         if ($conge)
         {
             if ($type == 'Congé maladie')
             {
                 // réduction depuit la solde de maladie
-
-
+                 $day=$userprofile->getSickday() ;
+                 if ($day>=$nbj)
+                 {
+                     $userprofile->setSickday($day-$nbj);
+                     $userprofile->setDayout($nbj);
+                     $conge->setStatuts("Accepter");
+                 }else
+                 {
+                 return $this->redirectToRoute('congelist');
+                 }
             }else
             {
                 // réduction depuit la solde de annuelle
-
+                $day=$userprofile->getDayoffavailable() ;
+                if ($day>=$nbj)
+                {
+                    $userprofile->setDayoffavailable($day-$nbj);
+                    $userprofile->setDayout($nbj);
+                    $conge->setStatuts("Accepter");
+                }else
+                {
+                    return $this->redirectToRoute('congelist');
+                }
             }
             $manager= $doctrine ->getManager();
             $manager->persist($conge);
