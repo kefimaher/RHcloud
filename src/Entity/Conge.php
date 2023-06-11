@@ -29,16 +29,6 @@ class Conge
     {
         return $this->id;
     }
-    public function getUserProfile(): ?string
-    {
-        return $this->user_profile;
-    }
-    public function setUserProfile(?string $user_profile): self
-    {
-        $this->user_profile = $user_profile;
-
-        return $this;
-    }
     /**
      * @return string|null
      */
@@ -137,4 +127,24 @@ class Conge
     {
         $this->nombredujour = $nombredujour;
     }
+
+    /**
+     * @return UserProfile|null
+     */
+    public function getUserProfile(): ?UserProfile
+    {
+        return $this->user_profile;
+    }
+
+    /**
+     * @param UserProfile|null $user_profile
+     */
+    public function setUserProfile(?UserProfile $user_profile): void
+    {
+        $this->user_profile = $user_profile;
+    }
+
+
+
+
 }

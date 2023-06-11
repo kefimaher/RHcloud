@@ -25,12 +25,13 @@
                     <table class="table table-striped jambo_table bulk_action">
                         <thead>
                         <tr class="headings">
-                            <th class="column-title">Numéro du conge </th>
+
+                            <th class="column-title">Numéro d'employeur</th>
                             <th class="column-title">Date debut</th>
                             <th class="column-title">Date fin</th>
                             <th class="column-title">Nombre des jour </th>
                             <th class="column-title">Statut</th>
-                            <th class="column-title">Jour disponible</th>
+                            <th class="column-title">Type de conge</th>
                             <th class="column-title no-link last"><span class="nobr">Accepter</span></th>
                             <th class="column-title no-link last"><span class="nobr">Refuse</span></th>
                             <th class="column-title no-link last"><span class="nobr">Supprime</span></th>
@@ -44,12 +45,12 @@
                             {% for conge in conges %}
                                 {% if  conge.statuts == 'en attente' %}
                                 <tr class="even pointer">
-                                    <td class="">{{ conge.id }}</td>
+                                    <td class="">{{ conge.userprofile.employernumber }}</td>
                                     <td class="">{{ conge.startday }}</td>
                                     <td class="">{{ conge.endday }}</td>
-                                    <td class="">{{ conge.typeconge }}</td>
-                                    <td class="">{{ conge.statuts }}</td>
                                     <td class="">{{ conge.nombredujour }}</td>
+                                    <td class="">{{ conge.statuts }}</td>
+                                    <td class="">{{ conge.typeconge }}</td>
                                     <td class="last"><a href="{{ path('accepter',{'id':conge.id,'nbj':conge.nombredujour}) }}"><button type="button" class="btn btn-sm btn-round btn-success">valider</button></a></td>
                                     <td class="last"><a href=""><button type="button" class="btn btn-sm btn-round btn-warning">regeter</button></a></td>
                                     <td class="last"><a href="{{ path('supprime',{'id':conge.id}) }}"><button type="button" class="btn btn-sm btn-round btn-danger">supprimer</button></a></td>

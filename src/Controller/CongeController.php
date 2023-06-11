@@ -37,15 +37,8 @@ class CongeController extends  AbstractController
     #[Route('/demandeconge', name: 'demandeconge')]
     public function demandecongeAction(ManagerRegistry $doctrine ,Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
-
-        $username = $this->getUser()->getEmail();
-
-    //    session_start();
-    //    $value=$_SESSION["user"] ;
-   //     echo $_SESSION["user"];
-        echo ('<br>');
-        echo $username ;
-        die();
+        $iduser = $this->getUser()->getId();
+        $userprofile = $doctrine->getRepository(UserProfile::class)->findOneBy(array('id' => $iduser));
         $repository = $doctrine->getRepository(Conge::class);
         $conge = new Conge() ;
         $form = $this->createForm(CongeFormType::class, $conge);
@@ -53,13 +46,13 @@ class CongeController extends  AbstractController
         if ($form->isSubmitted()) {
             $startday=$form->get('start_day')->getData() ;
             $endday= $form->get('end_day')->getData() ;
-            /* calculer la deffrence enter les deux date */
             $conge->setStartDay($form->get('start_day')->getData());
             $conge->setEndDay($form->get('end_day')->getData());
             $conge->setTypeConge($form->get('type_conge')->getData());
             $conge->setStatuts("en attente");
             $conge->setDiscription($form->get('discription')->getData());
             $conge->setNombredujour(3);
+            $conge->setUserProfile($userprofile);
             $entityManager->persist($conge);
             $entityManager->flush();
             return $this->redirectToRoute('congelist');
@@ -83,25 +76,29 @@ class CongeController extends  AbstractController
         return $this->redirectToRoute('congelist');
     }
     #[Route('/accepter/{id}/{nbj}', name: 'accepter')]
-    public function accepterAction(ManagerRegistry $doctrine ,$id , $nbj)
+    public function accepterAction(Conge $conge = null , ManagerRegistry $doctrine, $id):RedirectResponse
     {
-        $conge = new Conge() ;
-        // recupure  l'employer qui faire la demande
-        $repository = $doctrine->getRepository(Conge::class);
-        $conge=$repository->find($id);
-        if ($conge) {
-            $type=$conge->getTypeConge();
-            if ($type == 'Le congé maladie') {
-                //  la soustraction depuis les jours maladie
-            }
-            else
+           $conge = $doctrine->getRepository(Conge::class)->findOneBy(array('id' => $id));
+           $userid = $conge->getUserProfile->getId();
+           echo $userid ;
+           die();
+           $type=$conge->getTypeConge();
+        if ($conge)
+        {
+            if ($type == 'Congé maladie')
             {
-                //  la soustraction depuis les jours annuelle
+                // réduction depuit la solde de maladie
+
+
+            }else
+            {
+                // réduction depuit la solde de annuelle
+
             }
-            $conge->setStatuts("accepter");
-            $repository->persist($conge);
-            $repository->flush();
-            }
+            $manager= $doctrine ->getManager();
+            $manager->persist($conge);
+            $manager->flush();
+        }
         return $this->redirectToRoute('congelist');
     }
 

@@ -24,9 +24,9 @@ class RegistrationController extends AbstractController
             $image = $avatar ;
             if ($avatar==NULL)
             {
-                $image="imge not found ";
+                $image='guest.jpeg';
             }else {
-                // line just pour faire copier image de bureau ver votre dossier
+               // copier votre image de  de bureau ver votre dossier
                 $photo = 'C:\Users\Administrator\Desktop\\'.$avatar;
                 $newfile = 'C:\xampp\htdocs\RHcloud\public\photo profile\\'.$avatar;
                 copy($photo, $newfile);

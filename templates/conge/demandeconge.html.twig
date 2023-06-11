@@ -12,7 +12,6 @@
             </div>
         </div>
     </div>
-<<<<<<< HEAD
     <div class="clearfix">
     </div>
         <div class="row">
@@ -22,7 +21,6 @@
                    <h2>Nouvelle Personne</h2>
                    <ul class="nav navbar-right panel_toolbox"></ul>
                    <div class="clearfix"></div>
-=======
     <div class="clearfix"></div>
     <div class="row">
     <div class="col-md-12 col-sm-12">
@@ -32,7 +30,7 @@
         <ul class="nav navbar-right panel_toolbox">
         </ul>
         <div class="clearfix"></div>
->>>>>>> 8a4f4b4e3e2bf23d1583fa2da695c3c4786615d1
+
     </div>
     <div class="x_content">
     <form class="" action="" method="post" novalidate>
@@ -54,13 +52,13 @@
         <div class="col-md-6 col-sm-6">
             <select class="form-control" {{ form_widget(registrationForm.type_conge) }}
             <option>Congé annuel</option>
-            <option>Le congé maladie</option>
-            <option>Le congé maternité</option>
-            <option>Le congé paternité</option>
-            <option>Le congé parental d'éducation</option>
-            <option>Le congé de proche aidant</option>
-            <option>Le congé sans solde</option>
-            <option>Le congé sabbatique</option>
+            <option>Congé maladie</option>
+            <option>Congé maternité</option>
+            <option>Congé paternité</option>
+            <option>Congé parental d'éducation</option>
+            <option>Congé de proche aidant</option>
+            <option>Congé sans solde</option>
+            <option>Congé sabbatique</option>
             </select>
         </div>
     </div>
@@ -74,9 +72,8 @@
     <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">avatar</label>
         <div class="col-md-6 col-sm-6">
-            <input type="file" data-role="magic-overlay" data-target="#pictureBtn"  data-edit="insertImage" {{ form_widget(registrationForm.cretification) }}
+            <input type="file" data-role="magic-overlay" data-target="#pictureBtn"  data-edit="insertImage" >
         </div>
-
     </div>
     <button type="submit" class="btn btn-success">Register</button>
     {{ form_end(registrationForm) }}
