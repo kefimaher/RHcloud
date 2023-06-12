@@ -40,7 +40,7 @@
                         <tr class="even pointer">
                             <td class=" ">{{ dayoff.day }}</td>
                             <td class="a-right a-right ">{{ dayoff.discription }}</td>
-                            <td class=" last"><a href="#">View</a>
+                            <td class=" last"><a href="{{ path('supprimedayoff',{'id':dayoff.id}) }}"><button type="button" class="btn btn-sm btn-round btn-danger">supprimer</button></a>
                             </td>
                             {% endfor %}
                          {% endif %}

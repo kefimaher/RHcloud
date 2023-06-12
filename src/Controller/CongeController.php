@@ -32,8 +32,6 @@ class CongeController extends  AbstractController
         $listconge=$conge->findAll();
         return $this->render('conge/historiqueconge.html.twig',array('conges' => $listconge));
     }
-
-
     #[Route('/demandeconge', name: 'demandeconge')]
     public function demandecongeAction(ManagerRegistry $doctrine ,Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
@@ -44,14 +42,19 @@ class CongeController extends  AbstractController
         $form = $this->createForm(CongeFormType::class, $conge);
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
-            $startday=$form->get('start_day')->getData() ;
-            $endday= $form->get('end_day')->getData() ;
+            $datedebut=$form->get('start_day')->getData() ;
+            $datefin= $form->get('end_day')->getData() ;
+           //calculer la différence entre deux date
+            $date3 = strtotime($datedebut);
+            $date4 = strtotime($datefin);
+            $nbJoursTimestamp = $date4 - $date3;
+            $nbJours = round($nbJoursTimestamp / 86400) + 1;
             $conge->setStartDay($form->get('start_day')->getData());
             $conge->setEndDay($form->get('end_day')->getData());
             $conge->setTypeConge($form->get('type_conge')->getData());
             $conge->setStatuts("en attente");
             $conge->setDiscription($form->get('discription')->getData());
-            $conge->setNombredujour(3);
+            $conge->setNombredujour($nbJours);
             $conge->setUserProfile($userprofile);
             $entityManager->persist($conge);
             $entityManager->flush();
@@ -118,7 +121,6 @@ class CongeController extends  AbstractController
         }
         return $this->redirectToRoute('congelist');
     }
-
         #[Route('/refuse/{id}', name: 'refuse')]
     public function refuseAction(ManagerRegistry $doctrine ,$id)
     {
@@ -132,9 +134,6 @@ class CongeController extends  AbstractController
         }
         return $this->redirectToRoute('congelist');
     }
-
-
-
 }
 
 

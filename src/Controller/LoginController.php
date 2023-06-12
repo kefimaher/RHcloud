@@ -16,5 +16,5 @@ class LoginController extends  AbstractController
         $User = $doctrine->getRepository(User::class);
         $listuser = $User->findAll();
         return $this->render('dashbroad/dashbroad.html.twig', array('users' => $listuser));
-        }
+    }
     }
