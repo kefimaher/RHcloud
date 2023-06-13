@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Entity;
-
+use App\Repository\CongeRepository;
+use Doctrine\ORM\Mapping as ORM;
 class Reception
 {
     #[ORM\Id]

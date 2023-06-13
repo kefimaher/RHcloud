@@ -21,7 +21,7 @@ class receptionController extends AbstractController
     {
         $reception = $doctrine->getRepository(Conge::class);
         $listreception=$reception->findAll();
-        return $this->render('demanderh/demanderhlist.html.twig',array('reception' => $listreception));
+        return $this->render('demanderh/demanderhlist.html.twig',array('receptions' => $listreception));
     }
     #[Route('/demanderh', name: 'demanderh')]
     public function demandecongeAction(ManagerRegistry $doctrine ,Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
