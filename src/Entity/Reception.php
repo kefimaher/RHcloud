@@ -1,14 +1,22 @@
 <?php
 
 namespace App\Entity;
-use App\Repository\CongeRepository;
+
+use App\Repository\ReceptionRepository;
 use Doctrine\ORM\Mapping as ORM;
+
+#[ORM\Entity(repositoryClass: ReceptionRepository::class)]
 class Reception
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
     #[ORM\Column(length: 180)]
     private ?string $question = null;
     #[ORM\Column(length: 180)]
@@ -21,22 +29,6 @@ class Reception
     private ?string $datereponce = null;
     #[ORM\ManyToOne]
     private ?UserProfile $user_profile = null;
-
-    /**
-     * @return int|null
-     */
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param int|null $id
-     */
-    public function setId(?int $id): void
-    {
-        $this->id = $id;
-    }
 
     /**
      * @return string|null
@@ -89,38 +81,6 @@ class Reception
     /**
      * @return string|null
      */
-    public function getDate(): ?string
-    {
-        return $this->date;
-    }
-
-    /**
-     * @param string|null $date
-     */
-    public function setDate(?string $date): void
-    {
-        $this->date = $date;
-    }
-
-    /**
-     * @return UserProfile|null
-     */
-    public function getUserProfile(): ?UserProfile
-    {
-        return $this->user_profile;
-    }
-
-    /**
-     * @param UserProfile|null $user_profile
-     */
-    public function setUserProfile(?UserProfile $user_profile): void
-    {
-        $this->user_profile = $user_profile;
-    }
-
-    /**
-     * @return string|null
-     */
     public function getDatequestion(): ?string
     {
         return $this->datequestion;
@@ -150,5 +110,20 @@ class Reception
         $this->datereponce = $datereponce;
     }
 
+    /**
+     * @return UserProfile|null
+     */
+    public function getUserProfile(): ?UserProfile
+    {
+        return $this->user_profile;
+    }
+
+    /**
+     * @param UserProfile|null $user_profile
+     */
+    public function setUserProfile(?UserProfile $user_profile): void
+    {
+        $this->user_profile = $user_profile;
+    }
 
 }

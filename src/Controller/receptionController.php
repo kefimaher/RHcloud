@@ -19,7 +19,7 @@ class receptionController extends AbstractController
 
     public function receptionlistAction(ManagerRegistry $doctrine ) : Response
     {
-        $reception = $doctrine->getRepository(Conge::class);
+        $reception = $doctrine->getRepository(Reception::class);
         $listreception=$reception->findAll();
         return $this->render('demanderh/demanderhlist.html.twig',array('receptions' => $listreception));
     }

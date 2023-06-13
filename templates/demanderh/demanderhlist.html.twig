@@ -4,7 +4,7 @@
     <div class="col-md-12 col-sm-12  ">
         <div class="x_panel">
             <div class="x_title">
-                <h2>List Des Employés <small> </small></h2>
+                <h2>Validation des demandes</h2>
                 <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                     </li>
@@ -26,29 +26,21 @@
                         <thead>
                         <tr class="headings">
                             <th class="column-title">Nom et Prénom</th>
-                            <th class="column-title">E mail </th>
-                            <th class="column-title">Fontion</th>
-                            <th class="column-title">Statut</th>
-                            <th class="column-title">date d'entrée</th>
-                            <th class="column-title">Type de contrat de travail </th>
-                            <th class="column-title no-link last"><span class="nobr">Complete ou Modifier le profile</span>
-                            </th>
-                            <th class="bulk-actions" colspan="7">
-                                <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
-                            </th>
+                            <th class="column-title">Demande</th>
+                            <th class="column-title">Date de demande</th>
+                            <th class="column-title no-link last"><span class="nobr">Accepter</span></th>
+                            <th class="column-title no-link last"><span class="nobr">Refuse</span></th>
                         </tr>
                         </thead>
                         <tbody>
                         {% if receptions %}
                             {% for reception in receptions %}
                                 <tr class="even pointer" >
-                                    <td class=""></td>
-                                    <td class=""></td>
-                                    <td class=""></td>
-                                    <td class=""></td>
-                                    <td class=""></td>
-                                    <td class=""></td>
-                                    <td align="center" ><a href=""><button type="button" class="btn btn-sm btn-round btn-success">Éditer</button></a></td>
+                                    <td class="">{{ reception.userprofile.employernumber }}</td>
+                                    <td class="">{{ reception.question }}</td>
+                                    <td class="">{{ reception.datequestion }}</td>
+                                    <td><a href="#"><button type="button" class="btn btn-sm btn-round btn-success">valider</button></a></td>
+                                    <td><a href="#"><button type="button" class="btn btn-sm btn-round btn-danger">rejeter</button></a></td>
                                 </tr>
                             {% endfor %}
                         {% endif %}
