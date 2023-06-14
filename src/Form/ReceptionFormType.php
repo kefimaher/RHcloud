@@ -4,6 +4,9 @@ namespace App\Form;
 
 use App\Entity\Conge;
 use App\Entity\Reception;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ReceptionFormType extends AbstractType
 {
@@ -12,11 +15,7 @@ class ReceptionFormType extends AbstractType
     {
         {
             $builder
-                ->add('question')
-                ->add('reponce')
-                ->add('statut')
-                ->add('datequestion')
-                ->add('datereponce') ;
+                ->add('question') ;
         }
     }
     public function configureOptions(OptionsResolver $resolver): void

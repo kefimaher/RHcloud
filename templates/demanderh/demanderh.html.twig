@@ -1,9 +1,5 @@
 {% extends 'home.html.twig' %}
 {% block content %}
-
-
-
-
     {{ form_start(registrationForm) }}
 <br> <br> <br> <br>
 <div class="" role="main">
@@ -21,61 +17,27 @@
             <div class="col-md-12 col-sm-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Demander un congé</h2>
+                        <h2>Nouveau</h2>
                         <ul class="nav navbar-right panel_toolbox">
                         </ul>
                         <div class="clearfix"></div>
-
                     </div>
                     <div class="x_content">
                         <form class="" action="" method="post" novalidate>
                             <div class="field item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3  label-align">Date de debut</label>
-                                <div class="col-md-6 col-sm-6">
-                                    <input type="date" class="form-control" {{ form_widget(registrationForm.start_day) }}
-                                </div>
-                            </div>
-                            <div class="field item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3  label-align">Date fin</label>
-                                <div class="col-md-6 col-sm-6">
-                                    <input class="form-control" type="date"  {{ form_widget(registrationForm.end_day) }}
-                                </div>
-                            </div>
-
-                            <div class="field item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3  label-align">Type de conge</label>
                                 <div class="col-md-6 col-sm-6">
-                                    <select class="form-control" {{ form_widget(registrationForm.type_conge) }}
-                                    <option>Congé annuel</option>
-                                    <option>Congé maladie</option>
-                                    <option>Congé maternité</option>
-                                    <option>Congé paternité</option>
-                                    <option>Congé parental d'éducation</option>
-                                    <option>Congé de proche aidant</option>
-                                    <option>Congé sans solde</option>
-                                    <option>Congé sabbatique</option>
+                                    <select class="form-control" {{ form_widget(registrationForm.question) }}
+                                    <option>Attestation de salaire</option>
+                                    <option>Attestation de travail</option>
+                                    <option>Attestation du nombre de jours travaillés</option>
+                                    <option>Demande autorisation de sortie</option>
+                                    <option>Fiches de paie</option>
+                                    <option>Autre</option>
                                     </select>
-                                </div>
-                            </div>
-
-                            <div class="field item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3  label-align">Description</label>
-                                <div class="col-md-6 col-sm-6">
-                                    <input class="form-control" type="text"  {{ form_widget(registrationForm.discription) }}
-                                </div>
-                            </div>
-                            <div class="field item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3  label-align">avatar</label>
-                                <div class="col-md-6 col-sm-6">
-                                    <input type="file" data-role="magic-overlay" data-target="#pictureBtn"  data-edit="insertImage" >
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-success">Register</button>
                             {{ form_end(registrationForm) }}
 
-
-
-
 {% endblock %}
-
-

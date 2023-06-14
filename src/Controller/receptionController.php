@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Conge;
 use App\Entity\Reception;
+use App\Entity\UserProfile;
 use App\Form\ReceptionFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
@@ -33,11 +34,13 @@ class receptionController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted())
         {
-           /* $demanderh->setUserProfile($userprofile);
-              $entityManager->persist($demanderh);
+            $demanderh->setDatequestion(date('Y-m-d')) ;
+            $demanderh->setQuestion($form->get('question')->getData());
+            $demanderh->setStatut("en attente");
+            $demanderh->setUserProfile($userprofile);
+            $entityManager->persist($demanderh);
             $entityManager->flush();
-            return $this->redirectToRoute('receptionlist');
-           */
+            return $this->redirectToRoute('demanderhlist');
         }
         return $this->render('demanderh/demanderh.html.twig',['registrationForm' => $form->createView(),]);
     }

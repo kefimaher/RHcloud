@@ -17,19 +17,18 @@ class Reception
     {
         return $this->id;
     }
-    #[ORM\Column(length: 180)]
+    #[ORM\Column(nullable: true)]
     private ?string $question = null;
-    #[ORM\Column(length: 180)]
+    #[ORM\Column(nullable: true)]
     private ?string $statut = null;
-    #[ORM\Column(length: 180)]
+    #[ORM\Column(nullable: true)]
     private ?string $repence = null;
-    #[ORM\Column(length: 180)]
+    #[ORM\Column(nullable: true)]
     private ?string $datequestion = null;
-    #[ORM\Column(length: 180)]
+    #[ORM\Column(nullable: true)]
     private ?string $datereponce = null;
     #[ORM\ManyToOne]
     private ?UserProfile $user_profile = null;
-
     /**
      * @return string|null
      */
@@ -37,7 +36,6 @@ class Reception
     {
         return $this->question;
     }
-
     /**
      * @param string|null $question
      */
@@ -45,7 +43,6 @@ class Reception
     {
         $this->question = $question;
     }
-
     /**
      * @return string|null
      */
@@ -53,7 +50,6 @@ class Reception
     {
         return $this->statut;
     }
-
     /**
      * @param string|null $statut
      */
@@ -69,7 +65,6 @@ class Reception
     {
         return $this->repence;
     }
-
     /**
      * @param string|null $repence
      */
@@ -77,7 +72,6 @@ class Reception
     {
         $this->repence = $repence;
     }
-
     /**
      * @return string|null
      */
@@ -85,7 +79,6 @@ class Reception
     {
         return $this->datequestion;
     }
-
     /**
      * @param string|null $datequestion
      */
@@ -93,7 +86,6 @@ class Reception
     {
         $this->datequestion = $datequestion;
     }
-
     /**
      * @return string|null
      */
@@ -101,7 +93,6 @@ class Reception
     {
         return $this->datereponce;
     }
-
     /**
      * @param string|null $datereponce
      */
@@ -109,7 +100,6 @@ class Reception
     {
         $this->datereponce = $datereponce;
     }
-
     /**
      * @return UserProfile|null
      */
@@ -117,7 +107,6 @@ class Reception
     {
         return $this->user_profile;
     }
-
     /**
      * @param UserProfile|null $user_profile
      */
@@ -125,5 +114,4 @@ class Reception
     {
         $this->user_profile = $user_profile;
     }
-
 }
