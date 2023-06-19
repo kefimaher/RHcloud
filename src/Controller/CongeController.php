@@ -23,7 +23,6 @@ class CongeController extends  AbstractController
         $listconge=$conge->findAll();
         return $this->render('conge/congelist.html.twig',array('conges' => $listconge));
     }
-
     #[Route('/historique', name: 'historique')]
     public function historiqueAction(ManagerRegistry $doctrine ) : Response
     {
@@ -62,9 +61,6 @@ class CongeController extends  AbstractController
         }
         return $this->render('conge/demandeconge.html.twig',['registrationForm' => $form->createView(),]);
     }
-
-
-
     #[Route('/supprime/{id}', name: 'supprime')]
     public function supprimeAction(Conge $conge = null , ManagerRegistry $doctrine, $id):RedirectResponse
     {

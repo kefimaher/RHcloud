@@ -52,13 +52,13 @@
                         <h2> {{ app.user ? app.user.firstname : 'firstname' }} {{ app.user ? app.user.lastname : 'lastname' }}</h2>
                     </div>
                 </div>
-                <!-- /menu profile quick info -->
                 <br />
                 <!-- sidebar menu -->
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                     <div class="menu_section">
 
                         <ul class="nav side-menu">
+                            {% if is_granted('ROLE_ADMIN') %}
                             <li><a href="{{ path('dashbroad') }}" ><i class="fa fa-home"></i>Tableau de bord<span class="fa fa-chevron"></span></a></li>
                             <li><a><i class="fa fa-edit"></i> Les employés <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
@@ -66,36 +66,35 @@
                                     <li><a href="{{ path('addemployee') }}"> Ajout d'une nouvelle personne </a></li>
                                 </ul>
                             </li>
+                            {% endif %}
                             <li><a><i class="fa fa-cloud"></i> Les congés <span class="fa fa-chevron-down"   ></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="{{ path('historique') }}">List des congés</a></li>
-                                    <li><a href="{{ path('congelist') }}">Confirmer les congés</a></li>
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                        <li><a href="{{ path('congelist') }}">Confirmer les congés</a></li>
+                                    {% endif %}
                                     <li><a href="{{ path('demandeconge') }}">Demande de congé</a></li>
-
                                 </ul>
                             </li>
-                            <li><a><i class="fa fa-calendar"></i>Calendrier <span class="fa fa-chevron-down"></span></a>
+                            <li><a><i class="fa fa-calendar"></i>Public holidays  <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="{{ path('calendrier') }}">Calendrier</a></li>
                                     <li><a href="{{ path('dayofflist') }}">Jours fériés</a></li>
-                                    <li><a href="{{ path('ajouterjourferie') }}">Ajouter Jours fériés</a></li>
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                        <li><a href="{{ path('ajouterjourferie') }}">Ajouter Jours fériés</a></li>
+                                    {% endif %}
                                 </ul>
                             </li>
                             <li><a><i class="fa fa-archive"></i>Demande RH<span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="{{ path('demanderhlist') }}">Mes demandes RH</a></li>
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                        <li><a href="{{ path('demanderhlist') }}">Mes demandes RH</a></li>
+                                    {% endif %}
                                     <li><a href="{{ path('demanderh') }}">Nouveau</a></li>
                                 </ul>
                             </li>
-
-
                         </ul>
                     </div>
-
                 </div>
-                <!-- /sidebar menu -->
-                <!-- /menu footer buttons -->
-                <!-- /menu footer buttons -->
             </div>
         </div>
         <!-- top navigation -->
@@ -115,8 +114,6 @@
                 </nav>
             </div>
         </div>
-        <!-- /top navigation -->
-        <!-- page content -->
         <div class="right_col" role="main">
             <!-- top tiles -->
             {% block content %}
