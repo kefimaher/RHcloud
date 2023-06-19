@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 use App\Entity\Conge;
+use App\Entity\User;
 use App\Entity\UserProfile;
 use App\Form\CongeFormType;
 use App\Form\ProfileFormType;
@@ -26,10 +27,50 @@ class CongeController extends  AbstractController
     #[Route('/historique', name: 'historique')]
     public function historiqueAction(ManagerRegistry $doctrine ) : Response
     {
-        // recupure les list des conge statut accpeter ou refuse
         $conge = $doctrine->getRepository(Conge::class);
-        $listconge=$conge->findAll();
-        return $this->render('conge/historiqueconge.html.twig',array('conges' => $listconge));
+        $userrole = $this->getUser()->getRoles();
+        $Employernumber = $this->getUser()->getEmployernumber();
+        // si utlisateur est admin il doit voire tous
+        // recupure les list des conge statut accpeter ou refuse
+        $role = $userrole[0];
+        if ($role == "ROLE_ADMIN") {
+            $listconge = $conge->findAll();
+            return $this->render('conge/historiqueconge.html.twig', array('conges' => $listconge));
+        }else {
+            // si utlisateur est simple user i faut voire seullement sont  list
+            // il faut recupure numreo de user qui a conccter pour chercher et afficher sont list des conges s
+        echo $Employernumber ;
+       echo ('<br>') ;
+        // chercher dans la table user profeile sur la empoyer pour chercher les lit des conges envoyer
+            $userprofile = $doctrine->getRepository(UserProfile::class)->findOneBy(array('employer_number' => $Employernumber));
+       $num= $userprofile->getEmployerNumber();
+        echo($num);
+        // chercher dan la table conge de user profil qui envoyer une conge
+
+        die()  ;
+
+
+
+        }
+
+
+
+
+        /*
+        $userrole = $this->getUser()->getRoles();
+        $role = $userrole[0];
+        if ($role == "ROLE_ADMIN")
+        {
+            $User = $doctrine->getRepository(User::class);
+            $listuser = $User->findAll();
+            return $this->render('dashbroad/dashbroad.html.twig', array('users' => $listuser));
+        }
+        else
+        {
+            return $this->redirectToRoute('demandeconge');
+        }
+
+        */
     }
     #[Route('/demandeconge', name: 'demandeconge')]
     public function demandecongeAction(ManagerRegistry $doctrine ,Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
