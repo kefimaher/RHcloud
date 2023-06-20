@@ -36,18 +36,14 @@ class CongeController extends  AbstractController
         if ($role == "ROLE_ADMIN") {
             $listconge = $conge->findAll();
             return $this->render('conge/historiqueconge.html.twig', array('conges' => $listconge));
-        }else
+        }elseif ($role == "ROLE_USER")
         {
             $userprofile = $doctrine->getRepository(UserProfile::class)->findOneBy(array('employer_number' => $Employernumber));
             $userconges = $doctrine->getRepository(Conge::class)->findBy(array('user_profile' => $userprofile));
-            foreach ( $userconges as $mycong ){
-                $id = $mycong  ->getId() ;
-                echo ($id) ;
-                die() ;
-            }
-            return $this->render('conge/historiqueconge.html.twig', array('userconges' => $userconges));
+            return $this->render('conge/historiqueconge.html.twig', array('conges' => $userconges));
         }
-        return $this->render('conge/historiqueconge.html.twig', array('conges' => $listconge));
+        return $this->redirectToRoute('congelist');
+
     }
     #[Route('/demandeconge', name: 'demandeconge')]
     public function demandecongeAction(ManagerRegistry $doctrine ,Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
