@@ -36,41 +36,18 @@ class CongeController extends  AbstractController
         if ($role == "ROLE_ADMIN") {
             $listconge = $conge->findAll();
             return $this->render('conge/historiqueconge.html.twig', array('conges' => $listconge));
-        }else {
-            // si utlisateur est simple user i faut voire seullement sont  list
-            // il faut recupure numreo de user qui a conccter pour chercher et afficher sont list des conges s
-        echo $Employernumber ;
-       echo ('<br>') ;
-        // chercher dans la table user profeile sur la empoyer pour chercher les lit des conges envoyer
+        }else
+        {
             $userprofile = $doctrine->getRepository(UserProfile::class)->findOneBy(array('employer_number' => $Employernumber));
-       $num= $userprofile->getEmployerNumber();
-        echo($num);
-        // chercher dan la table conge de user profil qui envoyer une conge
-
-        die()  ;
-
-
-
+            $userconges = $doctrine->getRepository(Conge::class)->findBy(array('user_profile' => $userprofile));
+            foreach ( $userconges as $mycong ){
+                $id = $mycong  ->getId() ;
+                echo ($id) ;
+                die() ;
+            }
+            return $this->render('conge/historiqueconge.html.twig', array('userconges' => $userconges));
         }
-
-
-
-
-        /*
-        $userrole = $this->getUser()->getRoles();
-        $role = $userrole[0];
-        if ($role == "ROLE_ADMIN")
-        {
-            $User = $doctrine->getRepository(User::class);
-            $listuser = $User->findAll();
-            return $this->render('dashbroad/dashbroad.html.twig', array('users' => $listuser));
-        }
-        else
-        {
-            return $this->redirectToRoute('demandeconge');
-        }
-
-        */
+        return $this->render('conge/historiqueconge.html.twig', array('conges' => $listconge));
     }
     #[Route('/demandeconge', name: 'demandeconge')]
     public function demandecongeAction(ManagerRegistry $doctrine ,Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
