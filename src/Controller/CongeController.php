@@ -43,7 +43,6 @@ class CongeController extends  AbstractController
             return $this->render('conge/historiqueconge.html.twig', array('conges' => $userconges));
         }
         return $this->redirectToRoute('congelist');
-
     }
     #[Route('/demandeconge', name: 'demandeconge')]
     public function demandecongeAction(ManagerRegistry $doctrine ,Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
@@ -67,6 +66,17 @@ class CongeController extends  AbstractController
             $conge->setTypeConge($form->get('type_conge')->getData());
             $conge->setStatuts("en attente");
             $conge->setDiscription($form->get('discription')->getData());
+            $cretification = $form->get('cretification')->getData();
+            if ($cretification==NULL)
+            {
+                $cretification='CERTIF.jpg';
+            }else {
+               // copier votre cretification de  de bureau ver votre dossier
+                $photo = 'C:\Users\Administrator\Desktop\\'.$cretification;
+                $newfile = 'C:\xampp\htdocs\RHcloud\public\les certificat\\'.$cretification;
+                copy($photo, $newfile);
+            }
+            $conge->setCretification($form->get('cretification')->getData());
             $conge->setNombredujour($nbJours);
             $conge->setUserProfile($userprofile);
             $entityManager->persist($conge);
