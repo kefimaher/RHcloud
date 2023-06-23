@@ -19,7 +19,7 @@ class CongeController extends  AbstractController
 
     public function congeslistAction(ManagerRegistry $doctrine ) : Response
     {
-        // recupure les list des conge statut en attente
+        // LIST OF ALL CONGE AND DISPLAY ONLY THE WAITING FOR ACCEPTING OR REFUSING  REQUEST
         $conge = $doctrine->getRepository(Conge::class);
         $listconge=$conge->findAll();
         return $this->render('conge/congelist.html.twig',array('conges' => $listconge));
@@ -27,6 +27,9 @@ class CongeController extends  AbstractController
     #[Route('/historique', name: 'historique')]
     public function historiqueAction(ManagerRegistry $doctrine ) : Response
     {
+        // LIST OF ALL CONGE WITH ACCEPTING OR REFUSING SITUATION
+        // ONLY ADMIN RH CAN SEE ALL THE REQUEST
+        // USER CAN WTACH ONY HIS REQUEST
         $conge = $doctrine->getRepository(Conge::class);
         $userrole = $this->getUser()->getRoles();
         $Employernumber = $this->getUser()->getEmployernumber();
@@ -46,7 +49,8 @@ class CongeController extends  AbstractController
     }
     #[Route('/demandeconge', name: 'demandeconge')]
     public function demandecongeAction(ManagerRegistry $doctrine ,Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
-    {
+    {   // SEN A REQUEST FOR LEAVE
+        // ALL ADMINS RH AND USERS CAN SEND A REQUEST
         $iduser = $this->getUser()->getId();
         $userprofile = $doctrine->getRepository(UserProfile::class)->findOneBy(array('id' => $iduser));
         $repository = $doctrine->getRepository(Conge::class);
@@ -76,7 +80,7 @@ class CongeController extends  AbstractController
                 $newfile = 'C:\xampp\htdocs\RHcloud\public\les certificat\\'.$cretification;
                 copy($photo, $newfile);
             }
-            $conge->setCretification($form->get('cretification')->getData());
+            $conge->setCretification($cretification);
             $conge->setNombredujour($nbJours);
             $conge->setUserProfile($userprofile);
             $entityManager->persist($conge);
@@ -88,6 +92,8 @@ class CongeController extends  AbstractController
     #[Route('/supprime/{id}', name: 'supprime')]
     public function supprimeAction(Conge $conge = null , ManagerRegistry $doctrine, $id):RedirectResponse
     {
+        // DELET A REQUEST OF CONGE
+        // ONLY ADMIN RH CAN DELETE A REQUEST
         $conge = $doctrine->getRepository(Conge::class)->findOneBy(array('id' => $id));
         if ($conge)
         {
@@ -100,7 +106,8 @@ class CongeController extends  AbstractController
     }
     #[Route('/accepter/{id}', name: 'accepter')]
     public function accepterAction(Conge $conge = null , ManagerRegistry $doctrine, $id):RedirectResponse
-    {
+    {      // ACCEPTE A REQUEST OF CONGE
+        // ONLY ADMIN RH CAN ACCEPTE A REQUEST
            $conge = $doctrine->getRepository(Conge::class)->findOneBy(array('id' => $id));
            $userid = $conge->getUserProfile()->getId();
            $userprofile = $doctrine->getRepository(UserProfile::class)->findOneBy(array('id' => $userid));
@@ -143,7 +150,8 @@ class CongeController extends  AbstractController
     }
         #[Route('/refuse/{id}', name: 'refuse')]
     public function refuseAction(ManagerRegistry $doctrine ,$id)
-    {
+    {    // REFUSE A REQUEST OF CONGE
+        // ONLY ADMIN RH CAN REFUSE A REQUEST
         $repository = $doctrine->getRepository(Conge::class);
         $conge=$repository->findOneBy(array('id' => $id));
         if ($conge)

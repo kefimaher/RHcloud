@@ -20,6 +20,8 @@ class receptionController extends AbstractController
 
     public function receptionlistAction(ManagerRegistry $doctrine ) : Response
     {
+        // ONLY ADMIN CAN WATCH ALL REQUEST OF EMPLOEYR
+        // USER WATCH ONLY HIS REQUEST
         $reception = $doctrine->getRepository(Reception::class);
         $listreception=$reception->findAll();
         return $this->render('demanderh/demanderhlist.html.twig',array('receptions' => $listreception));
@@ -44,6 +46,41 @@ class receptionController extends AbstractController
         }
         return $this->render('demanderh/demanderh.html.twig',['registrationForm' => $form->createView(),]);
     }
+
+    #[Route('/supprimerdemande/{id}', name: 'supprimerdemande')]
+    public function supprimerdemandeAction(Reception $demande = null , ManagerRegistry $doctrine, $id): RedirectResponse
+    {
+        $iduser = $this->getUser()->getId();
+        $demande = $doctrine->getRepository(Reception::class)->findOneBy(array('id' => $id));
+        if ($demande)
+        {
+            $manager= $doctrine ->getManager();
+            $manager->remove($demande);
+            $manager->flush();
+        }
+        return $this->redirectToRoute('demanderhlist');
+    }
+
+    #[Route('/accepterdemande/{id}', name: 'accepterdemande')]
+    public function aaccepterdemandeAction(Reception $demande = null , ManagerRegistry $doctrine, $id): RedirectResponse
+    {
+        $iduser = $this->getUser()->getId();
+        $demande = $doctrine->getRepository(Reception::class)->findOneBy(array('id' => $id));
+        if ($demande)
+        {
+            $manager= $doctrine ->getManager();
+            $demande->setStatut('accepter') ;
+            $manager->persist($demande);
+            $manager->flush();
+        }
+        return $this->redirectToRoute('demanderhlist');
+    }
+
+
+
+
+
+
 
 
 }
