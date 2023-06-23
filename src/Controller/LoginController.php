@@ -13,6 +13,7 @@ class LoginController extends  AbstractController
     #[Route('/dashbroad', name: 'dashbroad')]
     public function dashbroadAction(ManagerRegistry $doctrine): Response
     {
+        // DASHBROAD THIS PAGE DIPALY ONLY TO THE ADMINS RH
             $userrole = $this->getUser()->getRoles();
             $role = $userrole[0];
                 if ($role == "ROLE_ADMIN")

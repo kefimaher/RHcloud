@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class CalendrierController  extends  AbstractController
-{
+{    // CALENDAR
     #[Route('/calendrier', name: 'calendrier')]
     public function calendrierAction(ManagerRegistry $doctrine ) : Response
     {

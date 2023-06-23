@@ -15,6 +15,8 @@ class EmployeeController extends AbstractController
     #[Route('/emplooyeslist', name: 'emplooyeslist')]
     public function listemployerAction(ManagerRegistry $doctrine): Response
     {
+        // LIST OF ALL THE EMPLOYESS
+        // ONLY ADMIN RH CAN WATCH THIS
         $Userprofile = $doctrine->getRepository(UserProfile::class);
         $listiserprofile = $Userprofile->findAll();
         $User = $doctrine->getRepository(User::class);
@@ -24,6 +26,9 @@ class EmployeeController extends AbstractController
     #[Route('/profilecomplet/{id}', name: 'profilecomplet')]
     public function profile(ManagerRegistry $doctrine , $id,Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
+        // COPLETE OF ANY  USER PROFILE
+        // ADMIN RH CAN COMPLETE ANY PROFILE
+        // USER CAN COMPLETE ONLY HIS PROFILE  ==> NOT DEVLOPPED YET
        $repository = $doctrine->getRepository(UserProfile::class);
        $userprofile = $repository ->find($id);
        $form = $this->createForm(ProfileFormType::class, $userprofile);
@@ -46,4 +51,6 @@ class EmployeeController extends AbstractController
         }
            return $this->render('employees/profile.html.twig', ['registrationForm' => $form->createView(),]);
     }
+
+    // DELET PROFILE ==>   NOT DEVLOPPED YET
 }

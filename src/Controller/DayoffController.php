@@ -22,6 +22,7 @@ class DayoffController extends  AbstractController
 
     public function dayofflistAction(ManagerRegistry $doctrine ) : Response
     {
+        // LIST OF ALL DAYS DISPLAY FOR ALL USERS
         $daysoff = $doctrine->getRepository(Hollidays::class);
         $listdays=$daysoff->findAll();
         return $this->render('dayoff/dayofflist.html.twig',array('daysoff' => $listdays));
@@ -30,6 +31,8 @@ class DayoffController extends  AbstractController
     #[Route('/ajouterjourferie', name: 'ajouterjourferie')]
     public function ajouterjourferieAction(ManagerRegistry $doctrine ,Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
+        // ADD NEW DAY OF TO THE LIST
+        // ONLY ADMIN RH CAN ADD A DAYS
         $day = new Hollidays() ;
         $form = $this->createForm(HollidaysFormType::class, $day);
         $form->handleRequest($request);
@@ -47,6 +50,8 @@ class DayoffController extends  AbstractController
     #[Route('/supprimedayoff/{id}', name: 'supprimedayoff')]
     public function supprimeAction(Conge $conge = null , ManagerRegistry $doctrine, $id):RedirectResponse
     {
+        // DELETE  DAY OF FROM THE LIST
+        // ONLY ADMIN RH CAN DELETE A DAYS
         $jour= $doctrine->getRepository(Hollidays::class)->findOneBy(array('id' => $id));
         if ($jour)
         {

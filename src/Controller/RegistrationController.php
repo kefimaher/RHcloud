@@ -15,6 +15,8 @@ class RegistrationController extends AbstractController
     #[Route('/addemployee', name: 'addemployee')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
+        // ADD NEW EMPLOYEE
+        // ONLY ADMIND RH CAN  ADD NEW EMPLOYEE
         $user = new User();
         $userprofile = new UserProfile() ;  // cree un user profile vide pour utlise pour complete la table user profile
         $form = $this->createForm(RegistrationFormType::class, $user);

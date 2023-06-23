@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Controller;
-
 use App\Entity\Conge;
 use App\Entity\Reception;
 use App\Entity\UserProfile;
@@ -13,7 +11,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
-
 class receptionController extends AbstractController
 {
     #[Route('/demanderhlist', name: 'demanderhlist')]
@@ -29,6 +26,8 @@ class receptionController extends AbstractController
     #[Route('/demanderh', name: 'demanderh')]
     public function demandecongeAction(ManagerRegistry $doctrine ,Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
+
+        // ALL USER CAN SEND A REQUEST
         $iduser = $this->getUser()->getId();
         $userprofile = $doctrine->getRepository(UserProfile::class)->findOneBy(array('id' => $iduser));
         $demanderh = new Reception() ;
@@ -46,10 +45,10 @@ class receptionController extends AbstractController
         }
         return $this->render('demanderh/demanderh.html.twig',['registrationForm' => $form->createView(),]);
     }
-
     #[Route('/supprimerdemande/{id}', name: 'supprimerdemande')]
     public function supprimerdemandeAction(Reception $demande = null , ManagerRegistry $doctrine, $id): RedirectResponse
     {
+        // ONLY ADMIN CAN DELETE THE REQUEST OF USERS
         $iduser = $this->getUser()->getId();
         $demande = $doctrine->getRepository(Reception::class)->findOneBy(array('id' => $id));
         if ($demande)
@@ -60,10 +59,10 @@ class receptionController extends AbstractController
         }
         return $this->redirectToRoute('demanderhlist');
     }
-
     #[Route('/accepterdemande/{id}', name: 'accepterdemande')]
     public function aaccepterdemandeAction(Reception $demande = null , ManagerRegistry $doctrine, $id): RedirectResponse
     {
+        // ONLY ADMIN CAN ACCEPT  THE REQUEST OF USERS
         $iduser = $this->getUser()->getId();
         $demande = $doctrine->getRepository(Reception::class)->findOneBy(array('id' => $id));
         if ($demande)
@@ -75,12 +74,19 @@ class receptionController extends AbstractController
         }
         return $this->redirectToRoute('demanderhlist');
     }
-
-
-
-
-
-
-
-
+    #[Route('/refuserdemande/{id}', name: 'refuserdemande')]
+    public function refuserdemandeAction(Reception $demande = null , ManagerRegistry $doctrine, $id): RedirectResponse
+    {
+        // ONLY ADMIN CAN REFUSE  THE REQUEST OF USERS
+        $iduser = $this->getUser()->getId();
+        $demande = $doctrine->getRepository(Reception::class)->findOneBy(array('id' => $id));
+        if ($demande)
+        {
+            $manager= $doctrine ->getManager();
+            $demande->setStatut('Refuse') ;
+            $manager->persist($demande);
+            $manager->flush();
+        }
+        return $this->redirectToRoute('demanderhlist');
+    }
 }

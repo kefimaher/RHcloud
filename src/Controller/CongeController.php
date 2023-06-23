@@ -19,7 +19,7 @@ class CongeController extends  AbstractController
 
     public function congeslistAction(ManagerRegistry $doctrine ) : Response
     {
-        // LIST OF ALL CONGE AND DISPLAY ONLY THE WAITING FOR ACCEPTING OR REFUSING  REQUEST
+        // LIST OF ALL CONGE DISPLAY TO THE ADMIN FOR ACCEPTING OR REFUSING REQUEST
         $conge = $doctrine->getRepository(Conge::class);
         $listconge=$conge->findAll();
         return $this->render('conge/congelist.html.twig',array('conges' => $listconge));
@@ -49,7 +49,8 @@ class CongeController extends  AbstractController
     }
     #[Route('/demandeconge', name: 'demandeconge')]
     public function demandecongeAction(ManagerRegistry $doctrine ,Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
-    {   // SEN A REQUEST FOR LEAVE
+    {
+        // SEN A REQUEST FOR LEAVE
         // ALL ADMINS RH AND USERS CAN SEND A REQUEST
         $iduser = $this->getUser()->getId();
         $userprofile = $doctrine->getRepository(UserProfile::class)->findOneBy(array('id' => $iduser));
@@ -106,8 +107,9 @@ class CongeController extends  AbstractController
     }
     #[Route('/accepter/{id}', name: 'accepter')]
     public function accepterAction(Conge $conge = null , ManagerRegistry $doctrine, $id):RedirectResponse
-    {      // ACCEPTE A REQUEST OF CONGE
-        // ONLY ADMIN RH CAN ACCEPTE A REQUEST
+    {
+           // ACCEPTE A REQUEST OF CONGE
+           // ONLY ADMIN RH CAN ACCEPTE A REQUEST
            $conge = $doctrine->getRepository(Conge::class)->findOneBy(array('id' => $id));
            $userid = $conge->getUserProfile()->getId();
            $userprofile = $doctrine->getRepository(UserProfile::class)->findOneBy(array('id' => $userid));
@@ -150,7 +152,8 @@ class CongeController extends  AbstractController
     }
         #[Route('/refuse/{id}', name: 'refuse')]
     public function refuseAction(ManagerRegistry $doctrine ,$id)
-    {    // REFUSE A REQUEST OF CONGE
+    {
+        // REFUSE A REQUEST OF CONGE
         // ONLY ADMIN RH CAN REFUSE A REQUEST
         $repository = $doctrine->getRepository(Conge::class);
         $conge=$repository->findOneBy(array('id' => $id));
