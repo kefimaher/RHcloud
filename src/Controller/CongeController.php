@@ -53,6 +53,8 @@ class CongeController extends  AbstractController
         // SEN A REQUEST FOR LEAVE
         // ALL ADMINS RH AND USERS CAN SEND A REQUEST
         $iduser = $this->getUser()->getId();
+        $userrole = $this->getUser()->getRoles();
+        $role = $userrole[0];
         $userprofile = $doctrine->getRepository(UserProfile::class)->findOneBy(array('id' => $iduser));
         $repository = $doctrine->getRepository(Conge::class);
         $conge = new Conge() ;
@@ -86,7 +88,10 @@ class CongeController extends  AbstractController
             $conge->setUserProfile($userprofile);
             $entityManager->persist($conge);
             $entityManager->flush();
-            return $this->redirectToRoute('congelist');
+            if ($role == "ROLE_ADMIN"){
+                return $this->redirectToRoute('congelist');
+            }
+            return $this->redirectToRoute('historique');
         }
         return $this->render('conge/demandeconge.html.twig',['registrationForm' => $form->createView(),]);
     }
