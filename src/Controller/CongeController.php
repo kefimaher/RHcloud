@@ -78,7 +78,7 @@ class CongeController extends  AbstractController
             {
                 $cretification='CERTIF.jpg';
             }else {
-               // copier votre cretification de  de bureau ver votre dossier
+            // TAKE COPY OF YOUR CRETIFICATE AND PUT IT ON PROJECT FOLDERS
                 $photo = 'C:\Users\Administrator\Desktop\\'.$cretification;
                 $newfile = 'C:\xampp\htdocs\RHcloud\public\les certificat\\'.$cretification;
                 copy($photo, $newfile);
@@ -124,7 +124,6 @@ class CongeController extends  AbstractController
         {
             if ($type == 'Congé maladie')
             {
-                // réduction depuit la solde de maladie
                  $day=$userprofile->getSickday() ;
                  if ($day>=$nbj)
                  {
@@ -137,7 +136,6 @@ class CongeController extends  AbstractController
                  }
             }else
             {
-                // réduction depuit la solde de annuelle
                 $day=$userprofile->getDayoffavailable() ;
                 if ($day>=$nbj)
                 {
