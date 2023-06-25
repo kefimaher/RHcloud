@@ -23,7 +23,7 @@
     <div class="x_content">
         {{ form_start(registrationForm) }}
     <form class="" action="" method="post" novalidate>
-      <center>  <h6>Information Personnelle</h6>  </center>
+      <center>  <h6>Information du travaille</h6>  </center>
         <br>
     <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Grade</label>
@@ -41,7 +41,7 @@
             <input type="text" class="form-control"{{ form_widget(registrationForm.status) }}
         </div>
     </div>
-        <center>  <h6>Information du travaille</h6></center>
+        <center>  <h6>Information Personnelle</h6></center>
     <div class="field item form-group">
         <label class="col-form-label col-md-3 col-sm-3  label-align">Date de naissance</label>
         <div class="col-md-6 col-sm-6">
@@ -84,15 +84,12 @@
                 <input class="form-control" type="number" {{ form_widget(registrationForm.upperhierarchy) }}
             </div>
         </div>
-
         <div class="field item form-group">
             <label class="col-form-label col-md-3 col-sm-3  label-align">Sex : </label>
             <div class="col-md-6 col-sm-6">
                 <input class="form-control" type="text" {{ form_widget(registrationForm.sex) }}
             </div>
         </div>
-
-
         <div class="ln_solid">
         <div class="form-group">
             <div class="col-md-6 offset-md-3">
@@ -102,11 +99,12 @@
         </div>
     </div>
 </form>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
 {{ form_end(registrationForm) }}
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+
 {% endblock %}
