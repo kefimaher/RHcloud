@@ -18,7 +18,8 @@ class SecurityController extends AbstractController
     #[Route(path: '/password', name: 'password')]
     public function password(): Response
     {
-        $mail=get('email')->getData() ;
+     //   $mail=$form->get('email')->getData() ;
+        $mail=$_POST['email'] ;
         echo $mail ;
         die();
         return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);

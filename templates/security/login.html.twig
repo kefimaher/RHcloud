@@ -984,8 +984,8 @@
             <h2>Password Recovery</h2>
             <p>Put your mail to receive your password</p>
 
-            <form class="recovery-form" action="{{ password }}" method="post">
-                <input type="text" class="input" id="user_recover" placeholder="Email" >
+            <form class="recovery-form" action="password" method="post">
+                <input type="text" name="email" class="input" id="user_recover" placeholder="Email" >
                 <input type="submit" class="button" value="Send">
             </form>
 
