@@ -103,42 +103,52 @@ class CongeController extends  AbstractController
         $conge = $doctrine->getRepository(Conge::class)->findOneBy(array('id' => $id));
         if ($conge)
         {
-
-            // SEND MAIL TO USER ==> YOU CONGE IS DELETED
-
-
+           // SEND MAIL TO USER ==> YOU CONGE IS DELETED
           // CONNECTION TEST
        $connected = @fsockopen("www.google.com", 80);
        if ($connected) {
            $conx = true; // return 1
-           fclose($connected);
+         //  fclose($connected);
        } else {
            $conx = false;  // vide
        }
+            echo ('<br>') ;
        echo ($conx) ;
-       die();
+            echo ('<br>') ;
+
+
+          //     if ($conx == 1) {
+
+
+                    $nom = $this->getUser()->getNom() ;
+                    $prenom=$this->getUser()->getPrenom() ;
+                    $email =$this->getUser()->getEmail() ;
+
+            echo ($nom) ;
+            echo ('<br>') ;
+            echo ($prenom) ;
+            echo ('<br>') ;
+            echo ($email) ;
+            echo ('<br>') ;
+
+
             /*
-
-               if ($conx == 1) {
-                    $nom = $user ->getNom() ;
-                    $prenom = $user -> getPrenom() ;
-                    $mailchef = $user ->getResponsable()->getEmail() ;
-                    $subject = "Nom de Société";
-                    $message = "Bonjour
-     $nom $prenom a demander un congé de $nbJours jour du $datedebut au $datefin";
-                    $mailer = $this->container->get('mailer');
-                    $transport = \Swift_SmtpTransport::newInstance('smpt.gmail.com', 465, 'ssl')
-                        ->setUsername('mail')
-                        ->setPassword('password');
-                    $mailer = \ Swift_Mailer::newInstance($transport);
-                    $message = \ Swift_Message::newInstance('test')
-                        ->setSubject($subject)
-                        ->setFrom('mail')
-                        ->setTo($mailchef)
-                        ->setBody($message);
-                    $this->get('mailer')->send($message);
-                }*/
-
+                             $subject = "Nom de Société";
+                             $message = "Bonjour :
+              $nom $prenom a demander un congé de $nbJours jour du $datedebut au $datefin";
+                             $mailer = $this->container->get('mailer');
+                             $transport = \Swift_SmtpTransport::newInstance('smpt.gmail.com', 465, 'ssl')
+                                 ->setUsername('mail')
+                                 ->setPassword('password');
+                             $mailer = \ Swift_Mailer::newInstance($transport);
+                             $message = \ Swift_Message::newInstance('test')
+                                 ->setSubject($subject)
+                                 ->setFrom('mail')
+                                 ->setTo($mailchef)
+                                 ->setBody($message);
+                             $this->get('mailer')->send($message);
+                         }*/
+die() ;
             $manager= $doctrine ->getManager();
             $manager->remove($conge);
             $manager->flush();
