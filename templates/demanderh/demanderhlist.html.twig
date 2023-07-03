@@ -28,6 +28,7 @@
                             <th class="column-title">Identifiant d'Employé</th>
                             <th class="column-title">Demande</th>
                             <th class="column-title">Date de demande</th>
+                            <th class="column-title"><span class="nobr">Statut</span></th>
                             <th class="column-title no-link last"><span class="nobr">Accepter</span></th>
                             <th class="column-title no-link last"><span class="nobr">Refuse</span></th>
                         </tr>
@@ -35,13 +36,44 @@
                         <tbody>
                         {% if receptions %}
                             {% for reception in receptions %}
+                                {% if  reception.statut == 'En attente' %}
                                 <tr class="even pointer" >
                                     <td class="">{{ reception.userprofile.employernumber }}</td>
                                     <td class="">{{ reception.question }}</td>
                                     <td class="">{{ reception.datequestion }}</td>
-                                    <td><a href="#"><button type="button" class="btn btn-sm btn-round btn-success">valider</button></a></td>
-                                    <td><a href="#"><button type="button" class="btn btn-sm btn-round btn-danger">rejeter</button></a></td>
+                                    <td class="">{{ reception.statut }}</td>
+                                    <td><a href="{{ path('accepterdemande',{'id':reception.id}) }}"><button type="button" class="btn btn-sm btn-round btn-success">accepter</button></a></td>
+                                    <td><a href="{{ path('refuserdemande',{'id':reception.id}) }}"><button type="button" class="btn btn-sm btn-round btn-danger">refuse</button></a></td>
                                 </tr>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                        {% if receptions %}
+                            {% for reception in receptions %}
+                                {% if  reception.statut == 'Accepter' %}
+                                    <tr class="even pointer" >
+                                        <td class="">{{ reception.userprofile.employernumber }}</td>
+                                        <td class="">{{ reception.question }}</td>
+                                        <td class="">{{ reception.datequestion }}</td>
+                                        <td style="color:#00FF00" class=""><b>{{ reception.statut }}</b></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                        {% if receptions %}
+                            {% for reception in receptions %}
+                                {% if  reception.statut == 'Refuse' %}
+                                    <tr class="even pointer" >
+                                        <td class="">{{ reception.userprofile.employernumber }}</td>
+                                        <td class="">{{ reception.question }}</td>
+                                        <td class="">{{ reception.datequestion }}</td>
+                                        <td style="color:#FF0000" class=""><b>{{ reception.statut }}</b></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                {% endif %}
                             {% endfor %}
                         {% endif %}
                         </tbody>

@@ -37,7 +37,7 @@ class receptionController extends AbstractController
         {
             $demanderh->setDatequestion(date('Y-m-d')) ;
             $demanderh->setQuestion($form->get('question')->getData());
-            $demanderh->setStatut("en attente");
+            $demanderh->setStatut("En attente");
             $demanderh->setUserProfile($userprofile);
             $entityManager->persist($demanderh);
             $entityManager->flush();
@@ -46,7 +46,7 @@ class receptionController extends AbstractController
         return $this->render('demanderh/demanderh.html.twig',['registrationForm' => $form->createView(),]);
     }
     #[Route('/supprimerdemande/{id}', name: 'supprimerdemande')]
-    public function supprimerdemandeAction(Reception $demande = null , ManagerRegistry $doctrine, $id): RedirectResponse
+    public function supprimerdemandeAction(Reception $demande = null , ManagerRegistry $doctrine, $id): Response
     {
         // ONLY ADMIN CAN DELETE THE REQUEST OF USERS
         $iduser = $this->getUser()->getId();
@@ -60,7 +60,7 @@ class receptionController extends AbstractController
         return $this->redirectToRoute('demanderhlist');
     }
     #[Route('/accepterdemande/{id}', name: 'accepterdemande')]
-    public function aaccepterdemandeAction(Reception $demande = null , ManagerRegistry $doctrine, $id): RedirectResponse
+    public function aaccepterdemandeAction(Reception $demande = null , ManagerRegistry $doctrine, $id): Response
     {
         // ONLY ADMIN CAN ACCEPT  THE REQUEST OF USERS
         $iduser = $this->getUser()->getId();
@@ -68,14 +68,16 @@ class receptionController extends AbstractController
         if ($demande)
         {
             $manager= $doctrine ->getManager();
-            $demande->setStatut('accepter') ;
+            $demande->setStatut('Accepter') ;
             $manager->persist($demande);
             $manager->flush();
+            return $this->redirectToRoute('demanderhlist');
         }
         return $this->redirectToRoute('demanderhlist');
+
     }
     #[Route('/refuserdemande/{id}', name: 'refuserdemande')]
-    public function refuserdemandeAction(Reception $demande = null , ManagerRegistry $doctrine, $id): RedirectResponse
+    public function refuserdemandeAction(Reception $demande = null , ManagerRegistry $doctrine, $id): Response
     {
         // ONLY ADMIN CAN REFUSE  THE REQUEST OF USERS
         $iduser = $this->getUser()->getId();
