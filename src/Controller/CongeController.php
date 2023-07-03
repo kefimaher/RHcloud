@@ -98,9 +98,41 @@ class CongeController extends  AbstractController
     #[Route('/supprime/{id}', name: 'supprime')]
     public function supprimeAction(Conge $conge = null , ManagerRegistry $doctrine, $id):RedirectResponse
     {
+
+        // UPLOAD USER DATA
+
+        $nom = $this->getUser()->getNom() ;
+        $prenom=$this->getUser()->getPrenom() ;
+        $email =$this->getUser()->getEmail() ;
+
+
+        echo ('le nom est  :'.$nom) ;
+        echo ('<br>') ;
+        echo ('le prenom est  :'.$prenom) ;
+        echo ('<br>') ;
+        echo ('email est :'.$email) ;
+        echo ('<br>') ;
+
+
+
         // DELET A REQUEST OF CONGE
         // ONLY ADMIN RH CAN DELETE A REQUEST
         $conge = $doctrine->getRepository(Conge::class)->findOneBy(array('id' => $id));
+        $datedebut = $conge ->getStartDay();
+        $datefin = $conge->getEndDay();
+        $status = $conge->getStatuts() ;
+        $nombredejour = $conge -> getNombredujour() ;
+
+        echo ('<br>') ;
+        echo ('date de debut du conge est :'.$datedebut) ;
+        echo ('<br>') ;
+        echo ('date de fin de conge est :'.$datefin) ;
+        echo ('<br>') ;
+        echo ('conge statut :'.$status) ;
+        echo ('<br>') ;
+        echo ('nomrbre des jour :'.$nombredejour) ;
+        echo ('<br>') ;
+
         if ($conge)
         {
            // SEND MAIL TO USER ==> YOU CONGE IS DELETED
@@ -108,28 +140,17 @@ class CongeController extends  AbstractController
        $connected = @fsockopen("www.google.com", 80);
        if ($connected) {
            $conx = true; // return 1
-         //  fclose($connected);
-       } else {
-           $conx = false;  // vide
+           echo('<br>');
+           echo('connection resuuire ');
+
        }
-            echo ('<br>') ;
-       echo ($conx) ;
-            echo ('<br>') ;
-
-
+            echo('connection echoue ');
+            die() ;
           //     if ($conx == 1) {
 
 
-                    $nom = $this->getUser()->getNom() ;
-                    $prenom=$this->getUser()->getPrenom() ;
-                    $email =$this->getUser()->getEmail() ;
 
-            echo ($nom) ;
-            echo ('<br>') ;
-            echo ($prenom) ;
-            echo ('<br>') ;
-            echo ($email) ;
-            echo ('<br>') ;
+
 
 
             /*
@@ -148,7 +169,7 @@ class CongeController extends  AbstractController
                                  ->setBody($message);
                              $this->get('mailer')->send($message);
                          }*/
-die() ;
+
             $manager= $doctrine ->getManager();
             $manager->remove($conge);
             $manager->flush();
