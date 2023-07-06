@@ -1,10 +1,8 @@
 <?php
 namespace App\Controller;
 use App\Entity\Conge;
-use App\Entity\User;
 use App\Entity\UserProfile;
 use App\Form\CongeFormType;
-use App\Form\ProfileFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,7 +14,6 @@ use Symfony\Component\Routing\Annotation\Route;
 class CongeController extends  AbstractController
 {
     #[Route('/congelist', name: 'congelist')]
-
     public function congeslistAction(ManagerRegistry $doctrine ) : Response
     {
         // LIST OF ALL CONGE DISPLAY TO THE ADMIN FOR ACCEPTING OR REFUSING REQUEST
@@ -98,23 +95,16 @@ class CongeController extends  AbstractController
     #[Route('/supprime/{id}', name: 'supprime')]
     public function supprimeAction(Conge $conge = null , ManagerRegistry $doctrine, $id):RedirectResponse
     {
-
         // UPLOAD USER DATA
-
         $nom = $this->getUser()->getNom() ;
         $prenom=$this->getUser()->getPrenom() ;
         $email =$this->getUser()->getEmail() ;
-
-
         echo ('le nom est  :'.$nom) ;
         echo ('<br>') ;
         echo ('le prenom est  :'.$prenom) ;
         echo ('<br>') ;
         echo ('email est :'.$email) ;
         echo ('<br>') ;
-
-
-
         // DELET A REQUEST OF CONGE
         // ONLY ADMIN RH CAN DELETE A REQUEST
         $conge = $doctrine->getRepository(Conge::class)->findOneBy(array('id' => $id));
