@@ -17,8 +17,7 @@ As a user, you can do
 
 For fix 
 
-password recupuration with mail 
-confirmation of all requeqst with mail 
-
-
+password recuperation with mail 
+confirmation of all requests with mail 
+input all control  using JS 
  
