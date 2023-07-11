@@ -96,8 +96,8 @@ class CongeController extends  AbstractController
     public function supprimeAction(Conge $conge = null , ManagerRegistry $doctrine, $id):RedirectResponse
     {
         // UPLOAD USER DATA
-        $nom = $this->getUser()->getNom() ;
-        $prenom=$this->getUser()->getPrenom() ;
+        $nom = $this->getUser()->getFirstname() ;
+        $prenom=$this->getUser()->getLastname() ;
         $email =$this->getUser()->getEmail() ;
         echo ('le nom est  :'.$nom) ;
         echo ('<br>') ;
@@ -123,18 +123,21 @@ class CongeController extends  AbstractController
         echo ('nomrbre des jour :'.$nombredejour) ;
         echo ('<br>') ;
 
-        if ($conge)
-        {
-           // SEND MAIL TO USER ==> YOU CONGE IS DELETED
-          // CONNECTION TEST
-       $connected = @fsockopen("www.google.com", 80);
-       if ($connected) {
-           $conx = true; // return 1
-           echo('<br>');
-           echo('connection resuuire ');
+        if ($conge) {
+            // SEND MAIL TO USER ==> YOU CONGE IS DELETED
+            // CONNECTION TEST
+            $connected = @fsockopen("www.google.com", 80);
+            if ($connected) {
+                $conx = true; // return 1
+                echo('<br>');
+                echo('connection resuuire ');
 
-       }
-            echo('connection echoue ');
+            } else
+            {
+                echo('connection echoue ');
+            }
+
+
             die() ;
           //     if ($conx == 1) {
 

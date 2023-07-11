@@ -1,16 +1,19 @@
 <?php
 namespace App\Controller;
 use App\Entity\User;
+use App\Service\MailerService;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+
 class SecurityController extends AbstractController
 {
     #[Route(path: '/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
+
         // LOGIN
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
@@ -21,11 +24,10 @@ class SecurityController extends AbstractController
     {   // PASSWORD RECUPURATION
         $mail=$_POST['email'] ;
         $user = $doctrine->getRepository(User::class)->findOneBy(array('email' => $mail));
+     //   MailerService::class $mail ;
         if ($user)
         {
             $password = $user->getRealpassword() ;
-
-            // send mail and echo message
         }
         return $this->redirectToRoute('app_login');
     }

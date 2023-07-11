@@ -13,13 +13,13 @@ class MailerService
         $this->replyTo = $replyTo;
     }
     public function sendEmail(
-        $to = 'aymen.sellaouti@gmail.com',
+        $to = 'to',
         $content = '<p>See Twig integration for better HTML integration!</p>',
         $subject = 'Time for Symfony Mailer!'
     ): void
     {
         $email = (new Email())
-            ->from('aymen.noreply@example.com')
+            ->from('from')
             ->to($to)
             //->cc('cc@example.com')
             //->bcc('bcc@example.com')
