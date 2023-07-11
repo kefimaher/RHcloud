@@ -19,7 +19,7 @@ class MailerService
     ): void
     {
         $email = (new Email())
-            ->from('from')
+            ->from('maher')
             ->to($to)
             //->cc('cc@example.com')
             //->bcc('bcc@example.com')

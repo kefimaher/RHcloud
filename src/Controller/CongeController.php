@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 class CongeController extends  AbstractController
 {
     #[Route('/congelist', name: 'congelist')]
@@ -93,18 +95,14 @@ class CongeController extends  AbstractController
         return $this->render('conge/demandeconge.html.twig',['registrationForm' => $form->createView(),]);
     }
     #[Route('/supprime/{id}', name: 'supprime')]
-    public function supprimeAction(Conge $conge = null , ManagerRegistry $doctrine, $id):RedirectResponse
+    public function supprimeAction(MailerInterface $mailer ,  Conge $conge = null , ManagerRegistry $doctrine, $id):RedirectResponse
     {
         // UPLOAD USER DATA
         $nom = $this->getUser()->getFirstname() ;
         $prenom=$this->getUser()->getLastname() ;
         $email =$this->getUser()->getEmail() ;
-        echo ('le nom est  :'.$nom) ;
-        echo ('<br>') ;
-        echo ('le prenom est  :'.$prenom) ;
-        echo ('<br>') ;
-        echo ('email est :'.$email) ;
-        echo ('<br>') ;
+        $to = 'maher_kefi@yahoo.fr' ;
+        $subject = "welcome" ;
         // DELET A REQUEST OF CONGE
         // ONLY ADMIN RH CAN DELETE A REQUEST
         $conge = $doctrine->getRepository(Conge::class)->findOneBy(array('id' => $id));
@@ -112,25 +110,62 @@ class CongeController extends  AbstractController
         $datefin = $conge->getEndDay();
         $status = $conge->getStatuts() ;
         $nombredejour = $conge -> getNombredujour() ;
-
-        echo ('<br>') ;
-        echo ('date de debut du conge est :'.$datedebut) ;
-        echo ('<br>') ;
-        echo ('date de fin de conge est :'.$datefin) ;
-        echo ('<br>') ;
-        echo ('conge statut :'.$status) ;
-        echo ('<br>') ;
-        echo ('nomrbre des jour :'.$nombredejour) ;
-        echo ('<br>') ;
-
+        $content = "<html> my page </html>" ;
         if ($conge) {
-            // SEND MAIL TO USER ==> YOU CONGE IS DELETED
+            // SEND MAIL TO USER TEL HIM THAT HIS REQUEST IS DELETED
             // CONNECTION TEST
             $connected = @fsockopen("www.google.com", 80);
             if ($connected) {
                 $conx = true; // return 1
-                echo('<br>');
-                echo('connection resuuire ');
+             /*   $email = (new Email())
+                    ->from('kefi.maher1212@gmail.com')
+                    ->to($to)
+                    //->cc('cc@example.com')
+                    //->bcc('bcc@example.com')
+                 //   ->replyTo($this->replyTo)
+                    //->priority(Email::PRIORITY_HIGH)
+                    ->subject($subject)
+//            ->text('Sending emails is fun again!')
+                    ->html($content);
+                echo ('maher' ) ;
+                 $mailer->send($email);
+            */
+
+
+
+
+                $subject = "Nom de Société";
+                $message = "Bonjour :
+              $nom $prenom a demander un congé de  jour du  au ";
+                $mailer = $this->container->get('mailer');
+                $transport = \Swift_SmtpTransport::newInstance('smpt.gmail.com', 465, 'ssl')
+                    ->setUsername('mail')
+                    ->setPassword('password');
+                $mailer = \Swift_Mailer::newInstance($transport);
+                $message = \Swift_Message::newInstance('test')
+                    ->setSubject($subject)
+                    ->setFrom('mail')
+                    ->setTo($to)
+                    ->setBody($message);
+                $this->get('mailer')->send($message);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             } else
             {
