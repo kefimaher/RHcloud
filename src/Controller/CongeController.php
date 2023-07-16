@@ -101,7 +101,7 @@ class CongeController extends  AbstractController
         $nom = $this->getUser()->getFirstname() ;
         $prenom=$this->getUser()->getLastname() ;
         $email =$this->getUser()->getEmail() ;
-        $to = 'maher_kefi@yahoo.fr' ;
+        $to = 'kefi.maher1212@gmail.com' ;
         $subject = "welcome" ;
         // DELET A REQUEST OF CONGE
         // ONLY ADMIN RH CAN DELETE A REQUEST
@@ -111,14 +111,16 @@ class CongeController extends  AbstractController
         $status = $conge->getStatuts() ;
         $nombredejour = $conge -> getNombredujour() ;
         $content = "<html> my page </html>" ;
+
         if ($conge) {
             // SEND MAIL TO USER TEL HIM THAT HIS REQUEST IS DELETED
             // CONNECTION TEST
             $connected = @fsockopen("www.google.com", 80);
             if ($connected) {
-                $conx = true; // return 1
-             /*   $email = (new Email())
-                    ->from('kefi.maher1212@gmail.com')
+
+
+               $email = (new Email())
+                    ->from('maher_kefi@yahoo.fr')
                     ->to($to)
                     //->cc('cc@example.com')
                     //->bcc('bcc@example.com')
@@ -129,43 +131,6 @@ class CongeController extends  AbstractController
                     ->html($content);
                 echo ('maher' ) ;
                  $mailer->send($email);
-            */
-
-
-
-
-                $subject = "Nom de Société";
-                $message = "Bonjour :
-              $nom $prenom a demander un congé de  jour du  au ";
-                $mailer = $this->container->get('mailer');
-                $transport = \Swift_SmtpTransport::newInstance('smpt.gmail.com', 465, 'ssl')
-                    ->setUsername('mail')
-                    ->setPassword('password');
-                $mailer = \Swift_Mailer::newInstance($transport);
-                $message = \Swift_Message::newInstance('test')
-                    ->setSubject($subject)
-                    ->setFrom('mail')
-                    ->setTo($to)
-                    ->setBody($message);
-                $this->get('mailer')->send($message);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             } else
             {
@@ -174,29 +139,7 @@ class CongeController extends  AbstractController
 
 
             die() ;
-          //     if ($conx == 1) {
 
-
-
-
-
-
-            /*
-                             $subject = "Nom de Société";
-                             $message = "Bonjour :
-              $nom $prenom a demander un congé de $nbJours jour du $datedebut au $datefin";
-                             $mailer = $this->container->get('mailer');
-                             $transport = \Swift_SmtpTransport::newInstance('smpt.gmail.com', 465, 'ssl')
-                                 ->setUsername('mail')
-                                 ->setPassword('password');
-                             $mailer = \ Swift_Mailer::newInstance($transport);
-                             $message = \ Swift_Message::newInstance('test')
-                                 ->setSubject($subject)
-                                 ->setFrom('mail')
-                                 ->setTo($mailchef)
-                                 ->setBody($message);
-                             $this->get('mailer')->send($message);
-                         }*/
 
             $manager= $doctrine ->getManager();
             $manager->remove($conge);
