@@ -3,6 +3,7 @@ namespace App\Controller;
 use App\Entity\Conge;
 use App\Entity\UserProfile;
 use App\Form\CongeFormType;
+use App\Service\MailerService;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,6 +14,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
+
 class CongeController extends  AbstractController
 {
     #[Route('/congelist', name: 'congelist')]
@@ -110,10 +112,13 @@ class CongeController extends  AbstractController
         $datefin = $conge->getEndDay();
         $status = $conge->getStatuts() ;
         $nombredejour = $conge -> getNombredujour() ;
+
         if ($conge) {
             $connected = @fsockopen("www.google.com", 80);
             if ($connected)
             {
+
+
               // SEND MAIL
             } else
             {
@@ -182,6 +187,30 @@ class CongeController extends  AbstractController
             $repository->persist($conge);
             $repository->flush();
         }
+        return $this->redirectToRoute('congelist');
+    }
+
+
+    #[Route('/maher', name: 'maher')]
+    public function sendEmail(MailerInterface $mailer): Response
+    {
+        echo('maher');
+
+        $email = (new Email())
+            ->from('ghostrevengegr@gmail.com')
+            ->to('maher1.kefi@gmail.com')
+
+            //->cc('cc@example.com')
+            //->bcc('bcc@example.com')
+            //->replyTo('fabien@example.com')
+            //->priority(Email::PRIORITY_HIGH)
+            ->subject('Time for Symfony Mailer!')
+            ->text('Sending emails is fun again!')
+            ->html('<p>See Twig integration for better HTML integration!</p>');
+
+        $mailer->send($email);
+        echo('maher 2');
+        die();
         return $this->redirectToRoute('congelist');
     }
 }
