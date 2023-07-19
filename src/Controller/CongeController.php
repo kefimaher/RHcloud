@@ -117,9 +117,12 @@ class CongeController extends  AbstractController
             $connected = @fsockopen("www.google.com", 80);
             if ($connected)
             {
-                // SEND MAIL
+               // SEND MAIL
+               // MUST CHANGE THE TARGET OF EMAIL
+               // MESSAGE : YOUR CONGE HAS BEEN DELETED
                 $mailer->sendEmail();
             }
+            die() ;
             $manager= $doctrine ->getManager();
             $manager->remove($conge);
             $manager->flush();
@@ -128,10 +131,11 @@ class CongeController extends  AbstractController
         return $this->redirectToRoute('congelist');
     }
     #[Route('/accepter/{id}', name: 'accepter')]
-    public function accepterAction(Conge $conge = null , ManagerRegistry $doctrine, $id):RedirectResponse
+    public function accepterAction(Conge $conge = null , ManagerRegistry $doctrine, $id,MailerService $mailer):RedirectResponse
     {
            // ACCEPTE A REQUEST OF CONGE
            // ONLY ADMIN RH CAN ACCEPTE A REQUEST
+           $connected = @fsockopen("www.google.com", 80);
            $conge = $doctrine->getRepository(Conge::class)->findOneBy(array('id' => $id));
            $userid = $conge->getUserProfile()->getId();
            $userprofile = $doctrine->getRepository(UserProfile::class)->findOneBy(array('id' => $userid));
@@ -147,6 +151,13 @@ class CongeController extends  AbstractController
                      $userprofile->setSickday($day-$nbj);
                      $userprofile->setDayout($nbj);
                      $conge->setStatuts("Accepter");
+                     if ($connected)
+                     {
+                         // SEND MAIL
+                         // MUST CHANGE THE TARGET OF EMAIL
+                         // MESSAGE : YOUR CONGE HAS BEEN ACCEPTED
+                         $mailer->sendEmail();
+                     }
                  }else
                  {
                  return $this->redirectToRoute('congelist');
@@ -159,6 +170,13 @@ class CongeController extends  AbstractController
                     $userprofile->setDayoffavailable($day-$nbj);
                     $userprofile->setDayout($nbj);
                     $conge->setStatuts("Accepter");
+                    if ($connected)
+                    {
+                        // SEND MAIL
+                        // MUST CHANGE THE TARGET OF EMAIL
+                        // MESSAGE : YOUR CONGE HAS BEEN ACCEPTED
+                        $mailer->sendEmail();
+                    }
                 }else
                 {
                     return $this->redirectToRoute('congelist');
@@ -171,10 +189,11 @@ class CongeController extends  AbstractController
         return $this->redirectToRoute('congelist');
     }
         #[Route('/refuse/{id}', name: 'refuse')]
-    public function refuseAction(ManagerRegistry $doctrine ,$id)
+    public function refuseAction(ManagerRegistry $doctrine ,$id,MailerService $mailer)
     {
         // REFUSE A REQUEST OF CONGE
         // ONLY ADMIN RH CAN REFUSE A REQUEST
+        $connected = @fsockopen("www.google.com", 80);
         $repository = $doctrine->getRepository(Conge::class);
         $conge=$repository->findOneBy(array('id' => $id));
         if ($conge)
@@ -182,6 +201,13 @@ class CongeController extends  AbstractController
             $conge->setStatuts("refuser");
             $repository->persist($conge);
             $repository->flush();
+            if ($connected)
+            {
+                // SEND MAIL
+                // MUST CHANGE THE TARGET OF EMAIL
+                // MESSAGE : YOUR CONGE HAS BEEN REFUSED
+                $mailer->sendEmail();
+            }
         }
         return $this->redirectToRoute('congelist');
     }

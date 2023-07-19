@@ -16,8 +16,8 @@ class MailerService
     public function sendEmail()
     {
         $email = (new Email())
-            ->from('ghostrevengegr@gmail.com')
-            ->to('maher1.kefi@gmail.com')
+            ->from('kefi.maher@esprit.tn')
+            ->to('kefi.maher@esprit.tn')
             ->subject('Hello')
             ->text('This is the plain text message.')
             ->html('<p>This is the HTML message.</p>');
