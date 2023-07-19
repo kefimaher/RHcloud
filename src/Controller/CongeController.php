@@ -97,7 +97,7 @@ class CongeController extends  AbstractController
         return $this->render('conge/demandeconge.html.twig',['registrationForm' => $form->createView(),]);
     }
     #[Route('/supprime/{id}', name: 'supprime')]
-    public function supprimeAction(MailerInterface $mailer ,  Conge $conge = null , ManagerRegistry $doctrine, $id):RedirectResponse
+    public function supprimeAction(MailerService $mailer ,  Conge $conge = null , ManagerRegistry $doctrine, $id):RedirectResponse
     {
         // UPLOAD USER DATA
         // DELET A REQUEST OF CONGE
@@ -117,12 +117,8 @@ class CongeController extends  AbstractController
             $connected = @fsockopen("www.google.com", 80);
             if ($connected)
             {
-
-
-              // SEND MAIL
-            } else
-            {
-             // DON'T SEND MAIL
+                // SEND MAIL
+                $mailer->sendEmail();
             }
             $manager= $doctrine ->getManager();
             $manager->remove($conge);
@@ -187,30 +183,6 @@ class CongeController extends  AbstractController
             $repository->persist($conge);
             $repository->flush();
         }
-        return $this->redirectToRoute('congelist');
-    }
-
-
-    #[Route('/maher', name: 'maher')]
-    public function sendEmail(MailerInterface $mailer): Response
-    {
-        echo('maher');
-
-        $email = (new Email())
-            ->from('ghostrevengegr@gmail.com')
-            ->to('maher1.kefi@gmail.com')
-
-            //->cc('cc@example.com')
-            //->bcc('bcc@example.com')
-            //->replyTo('fabien@example.com')
-            //->priority(Email::PRIORITY_HIGH)
-            ->subject('Time for Symfony Mailer!')
-            ->text('Sending emails is fun again!')
-            ->html('<p>See Twig integration for better HTML integration!</p>');
-
-        $mailer->send($email);
-        echo('maher 2');
-        die();
         return $this->redirectToRoute('congelist');
     }
 }

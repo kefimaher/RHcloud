@@ -1,35 +1,27 @@
 <?php
 
 namespace App\Service;
-
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 
 class MailerService
 {
-    private $replyTo;
-    public function __construct(private MailerInterface $mailer, $replyTo) {
-        $this->replyTo = $replyTo;
+    private $mailer;
+
+    public function __construct(MailerInterface $mailer)
+    {
+        $this->mailer = $mailer;
     }
-    public function sendEmail(
-        $to = 'maher1.kefi@gmail.com',
-        $content = '<p>See Twig integration for better HTML integration!</p>',
-        $subject = 'Time for Symfony Mailer!'
-    ): void
+
+    public function sendEmail()
     {
         $email = (new Email())
             ->from('ghostrevengegr@gmail.com')
-            ->to($to)
-            //->cc('cc@example.com')
-            //->bcc('bcc@example.com')
-            ->replyTo($this->replyTo)
-            //->priority(Email::PRIORITY_HIGH)
-            ->subject($subject)
-//            ->text('Sending emails is fun again!')
-            ->html($content);
-        $this->mailer->send($email);
-        // ...
-    }
+            ->to('maher1.kefi@gmail.com')
+            ->subject('Hello')
+            ->text('This is the plain text message.')
+            ->html('<p>This is the HTML message.</p>');
 
+        $this->mailer->send($email);
+    }
 }
