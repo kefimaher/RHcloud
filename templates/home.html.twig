@@ -78,7 +78,7 @@
                                     <li><a href="{{ path('demandeconge') }}">Demande de congé</a></li>
                                 </ul>
                             </li>
-                            <li><a><i class="fa fa-calendar"></i>Public holidays  <span class="fa fa-chevron-down"></span></a>
+                            <li><a><i class="fa fa-child "></i>Public holidays  <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="{{ path('dayofflist') }}">Jours fériés</a></li>
                                     {% if is_granted('ROLE_ADMIN') %}
@@ -92,6 +92,11 @@
                                         <li><a href="{{ path('demanderhlist') }}">Mes demandes RH</a></li>
                                     {% endif %}
                                     <li><a href="{{ path('demanderh') }}">Nouvelle demande</a></li>
+                                </ul>
+                            </li>
+                            <li><a><i class="fa fa-calendar"></i>Calendrier<span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="{{ path('calendrier') }}">Calendrier</a></li>
                                 </ul>
                             </li>
                         </ul>
